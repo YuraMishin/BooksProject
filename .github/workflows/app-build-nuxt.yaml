@@ -1,0 +1,24 @@
+﻿name: Nuxt.js Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build App
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull Code
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '12'
+      - name: Install Dependencies
+        run: npm install
+        working-directory: ./src/web-nuxt
+      - name: Build
+        run: npm run build
+        working-directory: ./src/web-nuxt

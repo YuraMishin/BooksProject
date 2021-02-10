@@ -1,4 +1,4 @@
-﻿name: Nuxt.js Build
+﻿name: Next.js Build
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
           node-version: '12'
       - name: Install Dependencies
         run: npm install
-        working-directory: ./src/web-nuxt
-      - name: Install Dependencies
+        working-directory: ./src/web-next
+      - name: Build
         run: npm run build
-        working-directory: ./src/web-nuxt
+        working-directory: ./src/web-next
