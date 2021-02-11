@@ -4,6 +4,19 @@
         <name>API</name>
     </assembly>
     <members>
+        <member name="T:API.Controllers.BooksController">
+            <summary>
+            Class BooksController.
+            Implements Books API
+            </summary>
+        </member>
+        <member name="M:API.Controllers.BooksController.List">
+            <summary>
+            Method retrieves all the books.
+            GET: /api/books
+            </summary>
+            <returns>string</returns>
+        </member>
         <member name="T:API.Program">
             <summary>
             Class Program.
