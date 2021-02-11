@@ -1,11 +1,10 @@
+using API.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Persistence;
 
 namespace API
 {
@@ -44,25 +43,7 @@ namespace API
     {
       services.AddControllers();
 
-      // DB connection
-      services.AddDbContext<DataContext>(
-        option =>
-        {
-          option.EnableSensitiveDataLogging();
-          option.EnableDetailedErrors();
-          option.UseNpgsql(
-            _configuration.GetConnectionString("BooksProject"));
-        });
-
-      //CORS for Frontend frameworks
-      services.AddCors(opt =>
-      {
-        opt.AddPolicy("CorsPolicy", policy =>
-        {
-          policy.AllowAnyHeader().AllowAnyMethod()
-            .WithOrigins("http://localhost:3000");
-        });
-      });
+      services.AddApplicationServices(_configuration);
     }
 
     /// <summary>

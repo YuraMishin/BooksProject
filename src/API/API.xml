@@ -28,6 +28,20 @@
             </summary>
             <returns>JSON</returns>
         </member>
+        <member name="T:API.Extensions.ApplicationServiceExtensions">
+            <summary>
+            Class ApplicationServiceExtensions
+            Implements service support
+            </summary>
+        </member>
+        <member name="M:API.Extensions.ApplicationServiceExtensions.AddApplicationServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Method adds applications services
+            </summary>
+            <param name="services">services</param>
+            <param name="configuration">configuration</param>
+            <returns>IServiceCollection</returns>
+        </member>
         <member name="T:API.Program">
             <summary>
             Class Program.
