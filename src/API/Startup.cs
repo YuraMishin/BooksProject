@@ -53,6 +53,16 @@ namespace API
           option.UseNpgsql(
             _configuration.GetConnectionString("BooksProject"));
         });
+
+      //CORS for Frontend frameworks
+      services.AddCors(opt =>
+      {
+        opt.AddPolicy("CorsPolicy", policy =>
+        {
+          policy.AllowAnyHeader().AllowAnyMethod()
+            .WithOrigins("http://localhost:3000");
+        });
+      });
     }
 
     /// <summary>
@@ -74,10 +84,8 @@ namespace API
         logger.LogInformation("Production mode");
       }
 
-      if (_env.IsDevelopment())
-      {
-        app.UseDeveloperExceptionPage();
-      }
+      //CORS for Frontend frameworks
+      app.UseCors("CorsPolicy");
 
       app.UseRouting();
 
