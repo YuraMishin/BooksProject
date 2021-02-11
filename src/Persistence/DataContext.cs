@@ -1,0 +1,24 @@
+using Microsoft.EntityFrameworkCore;
+
+namespace Persistence
+{
+  /// <summary>
+  /// Class DataContext.
+  /// Implements DbContext
+  /// </summary>
+  public class DataContext : DbContext
+  {
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="options">options</param>
+    public DataContext(DbContextOptions<DataContext> options)
+        : base(options)
+    { }
+
+    #region DB Tables
+
+
+    #endregion
+  }
+}

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Persistence</name>
+    </assembly>
+    <members>
+        <member name="T:Persistence.DataContext">
+            <summary>
+            Class DataContext.
+            Implements DbContext
+            </summary>
+        </member>
+        <member name="M:Persistence.DataContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Persistence.DataContext})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="options">options</param>
+        </member>
+        <member name="T:Persistence.Migrations.CreateDatabase">
+            <summary>
+            Class CreateDatabase.
+            Implements database creation
+            </summary>
+        </member>
+        <member name="M:Persistence.Migrations.CreateDatabase.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method performs the migration
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:Persistence.Migrations.CreateDatabase.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method rollbacks the migration
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:Persistence.Migrations.CreateDatabase.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Method builds target model
+            </summary>
+            <param name="modelBuilder">modelBuilder</param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>API</name>
+    </assembly>
+    <members>
+        <member name="T:API.Program">
+            <summary>
+            Class Program.
+            Implements the main app class
+            </summary>
+        </member>
+        <member name="M:API.Program.Main(System.String[])">
+            <summary>
+            App entry point
+            </summary>
+            <param name="args">args</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:API.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            Method bootstraps the app
+            </summary>
+            <param name="args">args</param>
+            <returns>IHostBuilder</returns>
+        </member>
+        <member name="T:API.Startup">
+            <summary>
+            Class Startup.
+            Implements initial settings
+            </summary>
+        </member>
+        <member name="F:API.Startup._configuration">
+            <summary>
+            Configuration
+            </summary>
+        </member>
+        <member name="F:API.Startup._env">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:API.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="configuration">configuration</param>
+            <param name="env">env</param>
+        </member>
+        <member name="M:API.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Method gets called by the runtime to add services to the container
+            </summary>
+            <param name="services">services</param>
+        </member>
+        <member name="M:API.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.Extensions.Logging.ILogger{API.Startup})">
+            <summary>
+            Method gets called by the runtime to configure the HTTP request pipeline
+            </summary>
+            <param name="app">app</param>
+            <param name="logger">logger</param>
+        </member>
+    </members>
+</doc>

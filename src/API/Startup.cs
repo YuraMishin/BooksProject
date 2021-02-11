@@ -1,33 +1,91 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Persistence;
 
 namespace API
 {
-    public class Startup
+  /// <summary>
+  /// Class Startup.
+  /// Implements initial settings
+  /// </summary>
+  public class Startup
+  {
+    /// <summary>
+    /// Configuration
+    /// </summary>
+    private readonly IConfiguration _configuration;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private readonly IWebHostEnvironment _env;
+
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="configuration">configuration</param>
+    /// <param name="env">env</param>
+    public Startup(IConfiguration configuration, IWebHostEnvironment env)
     {
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddControllers();
-        }
-
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
-            {
-                app.UseEndpoints(endpoints =>
-                {
-                    endpoints.MapDefaultControllerRoute();
-                });
-            });
-        }
+      _configuration = configuration;
+      _env = env;
     }
+
+    /// <summary>
+    /// Method gets called by the runtime to add services to the container
+    /// </summary>
+    /// <param name="services">services</param>
+    public void ConfigureServices(IServiceCollection services)
+    {
+      services.AddControllers();
+
+      // DB connection
+      services.AddDbContext<DataContext>(
+        option =>
+        {
+          option.EnableSensitiveDataLogging();
+          option.EnableDetailedErrors();
+          option.UseNpgsql(
+            _configuration.GetConnectionString("BooksProject"));
+        });
+    }
+
+    /// <summary>
+    /// Method gets called by the runtime to configure the HTTP request pipeline
+    /// </summary>
+    /// <param name="app">app</param>
+    /// <param name="logger">logger</param>
+    public void Configure(IApplicationBuilder app, ILogger<Startup> logger)
+    {
+      logger.LogInformation("App is running. Enjoy!");
+
+      if (_env.IsDevelopment())
+      {
+        logger.LogInformation("Development mode");
+        app.UseDeveloperExceptionPage();
+      }
+      if (_env.IsProduction())
+      {
+        logger.LogInformation("Production mode");
+      }
+
+      if (_env.IsDevelopment())
+      {
+        app.UseDeveloperExceptionPage();
+      }
+
+      app.UseRouting();
+
+      app.UseEndpoints(endpoints =>
+      {
+        endpoints.MapDefaultControllerRoute();
+      });
+
+    }
+  }
 }
