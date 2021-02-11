@@ -1,4 +1,5 @@
 using API.Extensions;
+using API.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -55,10 +56,12 @@ namespace API
     {
       logger.LogInformation("App is running. Enjoy!");
 
+      app.UseMiddleware<ErrorHandlingMiddleware>();
+
       if (_env.IsDevelopment())
       {
         logger.LogInformation("Development mode");
-        app.UseDeveloperExceptionPage();
+        // app.UseDeveloperExceptionPage();
         app.UseSwagger();
         app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
       }

@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Application</name>
+    </assembly>
+    <members>
+        <member name="T:Application.Books.Details">
+            <summary>
+            Class Details.
+            Implements retrieving the specific book
+            </summary>
+        </member>
+        <member name="T:Application.Books.Details.Query">
+            <summary>
+            Class Query
+            </summary>
+        </member>
+        <member name="P:Application.Books.Details.Query.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="T:Application.Books.Details.Handler">
+            <summary>
+             Class Handler
+            </summary>
+        </member>
+        <member name="F:Application.Books.Details.Handler._context">
+            <summary>
+            DataContext
+            </summary>
+        </member>
+        <member name="M:Application.Books.Details.Handler.#ctor(Persistence.DataContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="context">context</param>
+        </member>
+        <member name="M:Application.Books.Details.Handler.Handle(Application.Books.Details.Query,System.Threading.CancellationToken)">
+            <summary>
+            Method performs the feature
+            </summary>
+            <param name="request">request</param>
+            <param name="cancellationToken">cancellationToken</param>
+            <returns>JSON</returns>
+        </member>
+        <member name="T:Application.Books.List">
+            <summary>
+            Class List.
+            Implements retrieving all the books
+            </summary>
+        </member>
+        <member name="T:Application.Books.List.Query">
+            <summary>
+            Class Query
+            </summary>
+        </member>
+        <member name="T:Application.Books.List.Handler">
+            <summary>
+            Class Handler
+            </summary>
+        </member>
+        <member name="F:Application.Books.List.Handler._context">
+            <summary>
+            DataContext
+            </summary>
+        </member>
+        <member name="M:Application.Books.List.Handler.#ctor(Persistence.DataContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="context">context</param>
+        </member>
+        <member name="M:Application.Books.List.Handler.Handle(Application.Books.List.Query,System.Threading.CancellationToken)">
+            <summary>
+            Method performs the feature
+            </summary>
+            <param name="request">request</param>
+            <param name="cancellationToken">cancellationToken</param>
+            <returns>JSON</returns>
+        </member>
+        <member name="T:Application.Errors.RestException">
+            <summary>
+            Class RestException.
+            Implements custom exception
+            </summary>
+        </member>
+        <member name="P:Application.Errors.RestException.Code">
+            <summary>
+            HttpStatusCode
+            </summary>
+        </member>
+        <member name="P:Application.Errors.RestException.Errors">
+            <summary>
+            Errors
+            </summary>
+        </member>
+        <member name="M:Application.Errors.RestException.#ctor(System.Net.HttpStatusCode,System.Object)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="code">code</param>
+            <param name="errors">errors</param>
+        </member>
+    </members>
+</doc>

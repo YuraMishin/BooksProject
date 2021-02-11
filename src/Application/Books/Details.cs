@@ -1,6 +1,8 @@
 using System;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Errors;
 using Domain;
 using MediatR;
 using Persistence;
@@ -53,7 +55,9 @@ namespace Application.Books
       {
         var book = await _context.Books.FindAsync(request.Id);
 
-        if (book == null) throw new Exception("Not found");
+        if (book == null) throw new RestException(
+          HttpStatusCode.NotFound,
+          new { Book = "Not found" });
 
         return book;
       }
