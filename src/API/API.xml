@@ -10,12 +10,23 @@
             Implements Books API
             </summary>
         </member>
+        <member name="F:API.Controllers.BooksController._context">
+            <summary>
+            DataContext
+            </summary>
+        </member>
+        <member name="M:API.Controllers.BooksController.#ctor(Persistence.DataContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="context">context</param>
+        </member>
         <member name="M:API.Controllers.BooksController.List">
             <summary>
             Method retrieves all the books.
             GET: /api/books
             </summary>
-            <returns>string</returns>
+            <returns>JSON</returns>
         </member>
         <member name="T:API.Program">
             <summary>

@@ -1,4 +1,9 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Domain;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Persistence;
 
 namespace API.Controllers
 {
@@ -11,14 +16,28 @@ namespace API.Controllers
   public class BooksController : ControllerBase
   {
     /// <summary>
+    /// DataContext
+    /// </summary>
+    private readonly DataContext _context;
+
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="context">context</param>
+    public BooksController(DataContext context)
+    {
+      _context = context;
+    }
+
+    /// <summary>
     /// Method retrieves all the books.
     /// GET: /api/books
     /// </summary>
-    /// <returns>string</returns>
+    /// <returns>JSON</returns>
     [HttpGet]
-    public ActionResult<string> List()
+    public async Task<ActionResult<List<Book>>> List()
     {
-      return "list of all the books";
+      return await _context.Books.ToListAsync();
     }
   }
 }
