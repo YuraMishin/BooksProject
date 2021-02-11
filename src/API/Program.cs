@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Persistence;
+using Persistence.Seeders;
 
 namespace API
 {
@@ -32,6 +33,9 @@ namespace API
 
         // Creates DB if it doesn't exist
         await context.Database.MigrateAsync();
+
+        // Seeds data
+        await BooksSeeder.SeedData(context);
       }
       catch (Exception ex)
       {

@@ -69,5 +69,17 @@
             </summary>
             <param name="modelBuilder">modelBuilder</param>
         </member>
+        <member name="T:Persistence.Seeders.BooksSeeder">
+            <summary>
+            Class BookSeeder.
+            Seeds Books table
+            </summary>
+        </member>
+        <member name="M:Persistence.Seeders.BooksSeeder.SeedData(Persistence.DataContext)">
+            <summary>
+            Method performs the operation
+            </summary>
+            <param name="context">context</param>
+        </member>
     </members>
 </doc>
