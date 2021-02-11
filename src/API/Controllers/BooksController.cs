@@ -1,7 +1,6 @@
-using System.Collections.Generic;
+using System;
 using System.Threading.Tasks;
 using Application.Books;
-using Domain;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -35,9 +34,21 @@ namespace API.Controllers
     /// </summary>
     /// <returns>JSON</returns>
     [HttpGet]
-    public async Task<ActionResult<List<Book>>> List()
+    public async Task<IActionResult> List()
     {
-      return await _mediator.Send(new List.Query());
+      return Ok(await _mediator.Send(new List.Query()));
+    }
+
+    /// <summary>
+    /// Method retrieves the specific book.
+    /// GET: /api/books/id
+    /// </summary>
+    /// <param name="id">id</param>
+    /// <returns>JSON</returns>
+    [HttpGet("{id}")]
+    public async Task<IActionResult> Details(Guid id)
+    {
+      return Ok(await _mediator.Send(new Details.Query { Id = id }));
     }
   }
 }

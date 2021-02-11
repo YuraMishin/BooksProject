@@ -28,6 +28,14 @@
             </summary>
             <returns>JSON</returns>
         </member>
+        <member name="M:API.Controllers.BooksController.Details(System.Guid)">
+            <summary>
+            Method retrieves the specific book.
+            GET: /api/books/id
+            </summary>
+            <param name="id">id</param>
+            <returns>JSON</returns>
+        </member>
         <member name="T:API.Extensions.ApplicationServiceExtensions">
             <summary>
             Class ApplicationServiceExtensions
