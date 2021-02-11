@@ -59,6 +59,8 @@ namespace API
       {
         logger.LogInformation("Development mode");
         app.UseDeveloperExceptionPage();
+        app.UseSwagger();
+        app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
       }
       if (_env.IsProduction())
       {

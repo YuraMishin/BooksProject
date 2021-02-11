@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using Persistence;
 
 namespace API.Extensions
@@ -22,6 +23,12 @@ namespace API.Extensions
       IConfiguration configuration
       )
     {
+      // Adds Swagger
+      services.AddSwaggerGen(c =>
+      {
+        c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
+      });
+
       // DB connection
       services.AddDbContext<DataContext>(
         option =>
