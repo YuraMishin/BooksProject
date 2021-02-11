@@ -10,16 +10,16 @@
             Implements Books API
             </summary>
         </member>
-        <member name="F:API.Controllers.BooksController._context">
+        <member name="F:API.Controllers.BooksController._mediator">
             <summary>
-            DataContext
+            IMediator
             </summary>
         </member>
-        <member name="M:API.Controllers.BooksController.#ctor(Persistence.DataContext)">
+        <member name="M:API.Controllers.BooksController.#ctor(MediatR.IMediator)">
             <summary>
             Constructor
             </summary>
-            <param name="context">context</param>
+            <param name="mediator">mediator</param>
         </member>
         <member name="M:API.Controllers.BooksController.List">
             <summary>

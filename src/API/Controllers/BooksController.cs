@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Application.Books;
 using Domain;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Persistence;
 
 namespace API.Controllers
 {
@@ -16,17 +16,17 @@ namespace API.Controllers
   public class BooksController : ControllerBase
   {
     /// <summary>
-    /// DataContext
+    /// IMediator
     /// </summary>
-    private readonly DataContext _context;
+    private readonly IMediator _mediator;
 
     /// <summary>
     /// Constructor
     /// </summary>
-    /// <param name="context">context</param>
-    public BooksController(DataContext context)
+    /// <param name="mediator">mediator</param>
+    public BooksController(IMediator mediator)
     {
-      _context = context;
+      _mediator = mediator;
     }
 
     /// <summary>
@@ -37,7 +37,7 @@ namespace API.Controllers
     [HttpGet]
     public async Task<ActionResult<List<Book>>> List()
     {
-      return await _context.Books.ToListAsync();
+      return await _mediator.Send(new List.Query());
     }
   }
 }

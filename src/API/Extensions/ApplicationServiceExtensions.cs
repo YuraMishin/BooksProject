@@ -1,3 +1,5 @@
+using Application.Books;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -48,6 +50,10 @@ namespace API.Extensions
             .WithOrigins("http://localhost:3000");
         });
       });
+
+
+      // Adds Mediatr
+      services.AddMediatR(typeof(List.Handler).Assembly);
 
       return services;
     }
