@@ -25,6 +25,17 @@
             Title
             </summary>
         </member>
+        <member name="T:Application.Books.Create.CommandValidator">
+            <summary>
+            Class CommandValidator.
+            Implements validator
+            </summary>
+        </member>
+        <member name="M:Application.Books.Create.CommandValidator.#ctor">
+            <summary>
+            Method handles validation
+            </summary>
+        </member>
         <member name="T:Application.Books.Create.Handler">
             <summary>
             Class Handler

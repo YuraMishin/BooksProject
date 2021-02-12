@@ -58,9 +58,9 @@ namespace API.Controllers
     /// <param name="command">command</param>
     /// <returns>JSON</returns>
     [HttpPost]
-    public async Task<ActionResult<Unit>> Create([FromBody] Create.Command command)
+    public async Task<IActionResult> Create([FromBody] Create.Command command)
     {
-      return await _mediator.Send(command);
+      return Ok(await _mediator.Send(command));
     }
   }
 }

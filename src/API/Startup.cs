@@ -1,5 +1,7 @@
 using API.Extensions;
 using API.Middleware;
+using Application.Books;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -42,7 +44,12 @@ namespace API
     /// <param name="services">services</param>
     public void ConfigureServices(IServiceCollection services)
     {
-      services.AddControllers();
+      // Adds Fluent Validation
+      services.AddControllers()
+        .AddFluentValidation(cfg =>
+        {
+          cfg.RegisterValidatorsFromAssemblyContaining<Create>();
+        });
 
       services.AddApplicationServices(_configuration);
     }

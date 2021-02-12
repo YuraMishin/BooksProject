@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Domain;
+using FluentValidation;
 using MediatR;
 using Persistence;
 
@@ -27,6 +28,22 @@ namespace Application.Books
       /// Title
       /// </summary>
       public string Title { get; set; }
+    }
+
+    /// <summary>
+    /// Class CommandValidator.
+    /// Implements validator
+    /// </summary>
+    public class CommandValidator : AbstractValidator<Command>
+    {
+      /// <summary>
+      /// Method handles validation
+      /// </summary>
+      public CommandValidator()
+      {
+        RuleFor(x => x.Id).NotEmpty().WithMessage("Wrong credentials");
+        RuleFor(x => x.Title).NotEmpty().WithMessage("Wrong credentials");
+      }
     }
 
     /// <summary>
