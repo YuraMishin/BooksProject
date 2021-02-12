@@ -36,6 +36,14 @@
             <param name="id">id</param>
             <returns>JSON</returns>
         </member>
+        <member name="M:API.Controllers.BooksController.Create(Application.Books.Create.Command)">
+            <summary>
+            Method creates a book.
+            POST: /api/books/
+            </summary>
+            <param name="command">command</param>
+            <returns>JSON</returns>
+        </member>
         <member name="T:API.Extensions.ApplicationServiceExtensions">
             <summary>
             Class ApplicationServiceExtensions

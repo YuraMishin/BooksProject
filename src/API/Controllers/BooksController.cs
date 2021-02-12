@@ -50,5 +50,17 @@ namespace API.Controllers
     {
       return Ok(await _mediator.Send(new Details.Query { Id = id }));
     }
+
+    /// <summary>
+    /// Method creates a book.
+    /// POST: /api/books/
+    /// </summary>
+    /// <param name="command">command</param>
+    /// <returns>JSON</returns>
+    [HttpPost]
+    public async Task<ActionResult<Unit>> Create([FromBody] Create.Command command)
+    {
+      return await _mediator.Send(command);
+    }
   }
 }

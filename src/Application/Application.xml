@@ -4,6 +4,51 @@
         <name>Application</name>
     </assembly>
     <members>
+        <member name="T:Application.Books.Create">
+            <summary>
+            Сlass Create.
+            Implements a feature to create a book via JSON request
+            </summary>
+        </member>
+        <member name="T:Application.Books.Create.Command">
+            <summary>
+            Class Command
+            </summary>
+        </member>
+        <member name="P:Application.Books.Create.Command.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Application.Books.Create.Command.Title">
+            <summary>
+            Title
+            </summary>
+        </member>
+        <member name="T:Application.Books.Create.Handler">
+            <summary>
+            Class Handler
+            </summary>
+        </member>
+        <member name="F:Application.Books.Create.Handler._context">
+            <summary>
+            DataContext
+            </summary>
+        </member>
+        <member name="M:Application.Books.Create.Handler.#ctor(Persistence.DataContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="context">context</param>
+        </member>
+        <member name="M:Application.Books.Create.Handler.Handle(Application.Books.Create.Command,System.Threading.CancellationToken)">
+            <summary>
+            Method performs the feature
+            </summary>
+            <param name="request">request</param>
+            <param name="cancellationToken">cancellationToken</param>
+            <returns>JSON</returns>
+        </member>
         <member name="T:Application.Books.Details">
             <summary>
             Class Details.
