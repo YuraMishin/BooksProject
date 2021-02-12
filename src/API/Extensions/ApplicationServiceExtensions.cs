@@ -55,6 +55,8 @@ namespace API.Extensions
       // Adds Mediatr
       services.AddMediatR(typeof(List.Handler).Assembly);
 
+      services.AddAutoMapper(typeof(List.Handler));
+
       return services;
     }
   }

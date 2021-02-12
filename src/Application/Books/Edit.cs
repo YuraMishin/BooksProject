@@ -82,6 +82,8 @@ namespace Application.Books
 
         book.Title = request.Title ?? book.Title;
 
+        _context.Update(book);
+
         var success = await _context.SaveChangesAsync() > 0;
 
         if (success) return Unit.Value;
