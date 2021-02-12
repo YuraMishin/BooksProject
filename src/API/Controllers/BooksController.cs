@@ -62,5 +62,19 @@ namespace API.Controllers
     {
       return Ok(await _mediator.Send(command));
     }
+
+    /// <summary>
+    /// Method updates the book.
+    /// PUT: /api/books/id
+    /// </summary>
+    /// <param name="id">id</param>
+    /// <param name="command">command</param>
+    /// <returns>JSON</returns>
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Edit(Guid id, Edit.Command command)
+    {
+      command.Id = id;
+      return Ok(await _mediator.Send(command));
+    }
   }
 }

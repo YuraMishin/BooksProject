@@ -100,6 +100,62 @@
             <param name="cancellationToken">cancellationToken</param>
             <returns>JSON</returns>
         </member>
+        <member name="T:Application.Books.Edit">
+            <summary>
+            Class Edit
+            Implements a feature to edit the book via JSON request
+            </summary>
+        </member>
+        <member name="T:Application.Books.Edit.Command">
+            <summary>
+            Class Command
+            </summary>
+        </member>
+        <member name="P:Application.Books.Edit.Command.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Application.Books.Edit.Command.Title">
+            <summary>
+            Title
+            </summary>
+        </member>
+        <member name="T:Application.Books.Edit.CommandValidator">
+            <summary>
+            Class CommandValidator.
+            Implements validator
+            </summary>
+        </member>
+        <member name="M:Application.Books.Edit.CommandValidator.#ctor">
+            <summary>
+            Method handles validation
+            </summary>
+        </member>
+        <member name="T:Application.Books.Edit.Handler">
+            <summary>
+             Class Handler
+            </summary>
+        </member>
+        <member name="F:Application.Books.Edit.Handler._context">
+            <summary>
+            DataContext
+            </summary>
+        </member>
+        <member name="M:Application.Books.Edit.Handler.#ctor(Persistence.DataContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="context">context</param>
+        </member>
+        <member name="M:Application.Books.Edit.Handler.Handle(Application.Books.Edit.Command,System.Threading.CancellationToken)">
+            <summary>
+            Method performs the feature
+            </summary>
+            <param name="request">request</param>
+            <param name="cancellationToken">cancellationToken</param>
+            <returns>JSON</returns>
+        </member>
         <member name="T:Application.Books.List">
             <summary>
             Class List.

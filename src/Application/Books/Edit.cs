@@ -1,7 +1,8 @@
 using System;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using Domain;
+using Application.Errors;
 using FluentValidation;
 using MediatR;
 using Persistence;
@@ -9,10 +10,10 @@ using Persistence;
 namespace Application.Books
 {
   /// <summary>
-  /// Сlass Create.
-  /// Implements a feature to create a book via JSON request
+  /// Class Edit
+  /// Implements a feature to edit the book via JSON request
   /// </summary>
-  public class Create
+  public class Edit
   {
     /// <summary>
     /// Class Command
@@ -34,7 +35,7 @@ namespace Application.Books
     /// Class CommandValidator.
     /// Implements validator
     /// </summary>
-    public class CommandValidator : AbstractValidator<Command>
+    public class CommandValidator : AbstractValidator<Create.Command>
     {
       /// <summary>
       /// Method handles validation
@@ -46,7 +47,7 @@ namespace Application.Books
     }
 
     /// <summary>
-    /// Class Handler
+    ///  Class Handler
     /// </summary>
     public class Handler : IRequestHandler<Command>
     {
@@ -72,14 +73,15 @@ namespace Application.Books
       /// <returns>JSON</returns>
       public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
       {
-        var book = new Book
-        {
-          Id = request.Id,
-          Title = request.Title
+        var book = await _context.Books.FindAsync(request.Id);
 
-        };
+        if (book == null)
+          throw new RestException(
+            HttpStatusCode.NotFound,
+            new { Activity = "Not found" });
 
-        _context.Books.Add(book);
+        book.Title = request.Title ?? book.Title;
+
         var success = await _context.SaveChangesAsync() > 0;
 
         if (success) return Unit.Value;

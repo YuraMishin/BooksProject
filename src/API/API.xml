@@ -44,6 +44,15 @@
             <param name="command">command</param>
             <returns>JSON</returns>
         </member>
+        <member name="M:API.Controllers.BooksController.Edit(System.Guid,Application.Books.Edit.Command)">
+            <summary>
+            Method updates the book.
+            PUT: /api/books/id
+            </summary>
+            <param name="id">id</param>
+            <param name="command">command</param>
+            <returns>JSON</returns>
+        </member>
         <member name="T:API.Extensions.ApplicationServiceExtensions">
             <summary>
             Class ApplicationServiceExtensions
