@@ -111,6 +111,11 @@
             Class Command
             </summary>
         </member>
+        <member name="P:Application.Books.Edit.Command.Book">
+            <summary>
+            Book
+            </summary>
+        </member>
         <member name="T:Application.Books.Edit.CommandValidator">
             <summary>
             Class CommandValidator.
@@ -132,11 +137,17 @@
             DataContext
             </summary>
         </member>
+        <member name="F:Application.Books.Edit.Handler._mapper">
+            <summary>
+            IMapper
+            </summary>
+        </member>
         <member name="M:Application.Books.Edit.Handler.#ctor(Persistence.DataContext,AutoMapper.IMapper)">
             <summary>
             Constructor
             </summary>
             <param name="context">context</param>
+            <param name="mapper">mapper</param>
         </member>
         <member name="M:Application.Books.Edit.Handler.Handle(Application.Books.Edit.Command,System.Threading.CancellationToken)">
             <summary>

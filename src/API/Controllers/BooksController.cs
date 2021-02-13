@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Application.Activities;
 using Application.Books;
 using Domain;
 using MediatR;
@@ -76,6 +77,18 @@ namespace API.Controllers
     {
       book.Id = id;
       return Ok(await _mediator.Send(new Edit.Command { Book = book }));
+    }
+
+    /// <summary>
+    /// Method updates the book.
+    /// DELETE: /api/books/id
+    /// </summary>
+    /// <param name="id">id</param>
+    /// <returns>JSON</returns>
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> Delete(Guid id)
+    {
+      return Ok(await _mediator.Send(new Delete.Command { Id = id }));
     }
   }
 }

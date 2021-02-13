@@ -50,7 +50,15 @@
             PUT: /api/books/id
             </summary>
             <param name="id">id</param>
-            <param name="command">command</param>
+            <param name="book">book</param>
+            <returns>JSON</returns>
+        </member>
+        <member name="M:API.Controllers.BooksController.Delete(System.Guid)">
+            <summary>
+            Method updates the book.
+            DELETE: /api/books/id
+            </summary>
+            <param name="id">id</param>
             <returns>JSON</returns>
         </member>
         <member name="T:API.Extensions.ApplicationServiceExtensions">
