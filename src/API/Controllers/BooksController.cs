@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Application.Books;
+using Domain;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -68,13 +69,13 @@ namespace API.Controllers
     /// PUT: /api/books/id
     /// </summary>
     /// <param name="id">id</param>
-    /// <param name="command">command</param>
+    /// <param name="book">book</param>
     /// <returns>JSON</returns>
     [HttpPut("{id}")]
-    public async Task<IActionResult> Edit(Guid id, Edit.Command command)
+    public async Task<IActionResult> Edit(Guid id, Book book)
     {
-      command.Id = id;
-      return Ok(await _mediator.Send(command));
+      book.Id = id;
+      return Ok(await _mediator.Send(new Edit.Command { Book = book }));
     }
   }
 }

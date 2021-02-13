@@ -44,7 +44,7 @@
             <param name="command">command</param>
             <returns>JSON</returns>
         </member>
-        <member name="M:API.Controllers.BooksController.Edit(System.Guid,Application.Books.Edit.Command)">
+        <member name="M:API.Controllers.BooksController.Edit(System.Guid,Domain.Book)">
             <summary>
             Method updates the book.
             PUT: /api/books/id

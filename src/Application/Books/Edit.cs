@@ -3,6 +3,8 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Errors;
+using AutoMapper;
+using Domain;
 using FluentValidation;
 using MediatR;
 using Persistence;
@@ -21,14 +23,9 @@ namespace Application.Books
     public class Command : IRequest
     {
       /// <summary>
-      /// Id
+      /// Book
       /// </summary>
-      public Guid Id { get; set; }
-
-      /// <summary>
-      /// Title
-      /// </summary>
-      public string Title { get; set; }
+      public Book Book { get; set; }
     }
 
     /// <summary>
@@ -57,12 +54,19 @@ namespace Application.Books
       private readonly DataContext _context;
 
       /// <summary>
+      /// IMapper
+      /// </summary>
+      private readonly IMapper _mapper;
+
+      /// <summary>
       /// Constructor
       /// </summary>
       /// <param name="context">context</param>
-      public Handler(DataContext context)
+      /// <param name="mapper">mapper</param>
+      public Handler(DataContext context, IMapper mapper)
       {
         _context = context;
+        _mapper = mapper;
       }
 
       /// <summary>
@@ -73,14 +77,14 @@ namespace Application.Books
       /// <returns>JSON</returns>
       public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
       {
-        var book = await _context.Books.FindAsync(request.Id);
+        var book = await _context.Books.FindAsync(request.Book.Id);
 
         if (book == null)
           throw new RestException(
             HttpStatusCode.NotFound,
             new { Activity = "Not found" });
 
-        book.Title = request.Title ?? book.Title;
+        _mapper.Map(request.Book, book);
 
         _context.Update(book);
 

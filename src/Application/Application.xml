@@ -111,16 +111,6 @@
             Class Command
             </summary>
         </member>
-        <member name="P:Application.Books.Edit.Command.Id">
-            <summary>
-            Id
-            </summary>
-        </member>
-        <member name="P:Application.Books.Edit.Command.Title">
-            <summary>
-            Title
-            </summary>
-        </member>
         <member name="T:Application.Books.Edit.CommandValidator">
             <summary>
             Class CommandValidator.
@@ -142,7 +132,7 @@
             DataContext
             </summary>
         </member>
-        <member name="M:Application.Books.Edit.Handler.#ctor(Persistence.DataContext)">
+        <member name="M:Application.Books.Edit.Handler.#ctor(Persistence.DataContext,AutoMapper.IMapper)">
             <summary>
             Constructor
             </summary>
@@ -190,6 +180,17 @@
             <param name="request">request</param>
             <param name="cancellationToken">cancellationToken</param>
             <returns>JSON</returns>
+        </member>
+        <member name="T:Application.Activities.MappingProfile">
+            <summary>
+            Class MappingProfile.
+            Implements scheme for mapping
+            </summary>
+        </member>
+        <member name="M:Application.Activities.MappingProfile.#ctor">
+            <summary>
+            Method maps entities
+            </summary>
         </member>
         <member name="T:Application.Errors.RestException">
             <summary>
