@@ -5,6 +5,7 @@
       :key="index"
       :id="book.id"
       :title="book.title"
+      :is-admin="isAdmin"
     />
   </section>
 </template>
@@ -20,6 +21,10 @@
       books: {
         type: Array,
         required: true
+      },
+      isAdmin: {
+        type: Boolean,
+        required: false
       }
     }
   }

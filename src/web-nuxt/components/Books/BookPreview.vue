@@ -24,10 +24,14 @@
         type: String,
         required: true
       },
+      isAdmin: {
+        type: Boolean,
+        required: false
+      }
     },
     computed: {
       bookLink() {
-        return `/books/${this.id}`
+        return this.isAdmin ? `/admin/${this.id}` : `/books/${this.id}`
       }
     }
   }
