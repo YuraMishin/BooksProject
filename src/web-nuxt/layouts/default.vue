@@ -1,25 +1,23 @@
 <template>
-  <v-app>
-    <v-main>
-      <v-container>
-        <nuxt/>
-      </v-container>
-    </v-main>
-    <v-footer
-      :absolute="!fixed"
-      app
-    >
-      <span>&copy; 2020 - {{ new Date().getFullYear() }}</span>
-    </v-footer>
-  </v-app>
+  <div>
+    <nuxt/>
+  </div>
 </template>
 
 <script>
   export default {
     data() {
-      return {
-        fixed: false
-      }
+      return {}
     }
   }
 </script>
+
+<style>
+  html {
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  body {
+    margin: 0;
+  }
+</style>
