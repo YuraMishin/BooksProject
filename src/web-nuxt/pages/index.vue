@@ -3,19 +3,17 @@
     <section class="intro">
       <h1>Books</h1>
     </section>
-    <BookPreview
-      v-for="(book, index) in loadedBooks"
-      :key="index"
-      :id="book.id"
-      :title="book.title"
+    <BookList
+      :books="loadedBooks"
     />
   </div>
 </template>
 
 <script>
-  import BookPreview from "../components/Books/BookPreview";
+
+  import BookList from "../components/Books/BookList";
   export default {
-    components: {BookPreview},
+    components: {BookList},
     computed: {
       loadedBooks() {
         return this.$store.getters.loadedBooks;
