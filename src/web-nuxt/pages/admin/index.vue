@@ -1,5 +1,10 @@
 <template>
   <div class="admin-page">
+    <section class="new-book">
+      <AppButton @click="$router.push('/admin/new-book')">
+        Create Book
+      </AppButton>
+    </section>
     <section class="existing-books">
       <h1>Admin</h1>
       <h2>Books</h2>
@@ -13,11 +18,13 @@
 
 <script>
 import BookList from '@/components/Books/BookList'
+import AppButton from "../../components/UI/AppButton";
 
 export default {
   layout: 'admin',
   components: {
-    BookList
+    BookList,
+    AppButton
   },
   computed: {
     loadedBooks() {
