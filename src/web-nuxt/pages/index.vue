@@ -1,7 +1,7 @@
 <template>
   <div class="home-page">
     <section class="intro">
-      <h1>Books</h1>
+      <h1>Books Project</h1>
     </section>
     <BookList
       :books="loadedBooks"
