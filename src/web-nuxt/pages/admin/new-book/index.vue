@@ -18,7 +18,7 @@
       onSubmitted(postData) {
         this.$axios
           .post('http://localhost:5000/api/books/', postData)
-          .then(result => console.log(result))
+          .then(result => this.$router.push('/admin'))
           .catch(e => console.log(e))
       }
     }

@@ -1,7 +1,10 @@
 <template>
   <div class="admin-book-page">
     <section class="update-form">
-      <AdminBookForm :book="loadedBook"/>
+      <AdminBookForm
+        :book="loadedBook"
+        @submit="onSubmitted"
+      />
     </section>
   </div>
 </template>
@@ -14,11 +17,17 @@
     components: {
       AdminBookForm
     },
-    data() {
-      return {
-        loadedBook: {
-          title: 'Book'
-        }
+    async asyncData({params, $axios}) {
+      const loadedBook = await $axios
+        .$get(`http://localhost:5000/api/books/${params.bookId}`);
+      return {loadedBook};
+    },
+    methods: {
+      onSubmitted(editedBook) {
+        this.$axios
+          .$put(`http://localhost:5000/api/books/${this.$route.params.bookId}`, editedBook)
+          .then(res => this.$router.push('/admin'))
+          .catch(e => console.log(e));
       }
     }
   }
