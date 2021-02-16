@@ -12,6 +12,7 @@
 </template>
 
 <script>
+  import { v4 as uuid } from 'uuid';
   import AppControlInput from "@/components/UI/AppControlInput";
   import AppButton from "@/components/UI/AppButton";
 
@@ -31,6 +32,7 @@
         editedBook: this.book
           ? {...this.book}
           : {
+            id: uuid(),
             title: ""
           }
       };
@@ -38,7 +40,7 @@
     methods: {
       onSave() {
         // Save the book
-        console.log(this.editedBook);
+        this.$emit('submit', this.editedBook);
       },
       onCancel() {
         // Navigate back
