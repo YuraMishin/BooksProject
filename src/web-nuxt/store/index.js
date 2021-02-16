@@ -16,20 +16,10 @@ export const mutations = {
 
 export const actions = {
   nuxtServerInit(vuexContext, context) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        vuexContext.commit("setBooks", [
-          {
-            id: "1",
-            title: "Book1"
-          },
-          {
-            id: "2",
-            title: "Book2"
-          },
-        ]);
-        resolve();
-      }, 1000);
-    });
+    return this.$axios.get('http://localhost:5000/api/books')
+      .then(response => {
+        vuexContext.commit("setBooks", response.data);
+      })
+      .catch(e => context.error(e))
   }
 }
