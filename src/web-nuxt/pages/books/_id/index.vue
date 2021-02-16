@@ -16,70 +16,65 @@
 </template>
 
 <script>
-export default {
-  asyncData(context, callback) {
-    setTimeout(() => {
-      callback(null, {
-        loadedBook: {
-          id: "1",
-          title: `First book (ID:  ${context.route.params.id})`
-        }
-      });
-    }, 1000);
-  }
-};
+  export default {
+    async asyncData({$axios, params}) {
+      const loadedBook = await $axios
+        .$get(`http://localhost:5000/api/books/${params.id}`);
+      return {loadedBook};
+    }
+  };
 </script>
 
 <style scoped>
-.single-book-page {
-  padding: 30px;
-  text-align: center;
-  box-sizing: border-box;
-}
+  .single-book-page {
+    padding: 30px;
+    text-align: center;
+    box-sizing: border-box;
+  }
 
-.book {
-  width: 100%;
-}
-
-@media (min-width: 768px) {
   .book {
-    width: 600px;
-    margin: auto;
+    width: 100%;
   }
-}
 
-.book-title {
-  margin: 0;
-}
+  @media (min-width: 768px) {
+    .book {
+      width: 600px;
+      margin: auto;
+    }
+  }
 
-.book-details {
-  padding: 10px;
-  box-sizing: border-box;
-  border-bottom: 3px solid #ccc;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
+  .book-title {
+    margin: 0;
+  }
 
-@media (min-width: 768px) {
   .book-details {
-    flex-direction: row;
+    padding: 10px;
+    box-sizing: border-box;
+    border-bottom: 3px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
-}
 
-.book-detail {
-  color: rgb(88, 88, 88);
-  margin: 0 10px;
-}
+  @media (min-width: 768px) {
+    .book-details {
+      flex-direction: row;
+    }
+  }
 
-.book-feedback a {
-  color: red;
-  text-decoration: none;
-}
+  .book-detail {
+    color: rgb(88, 88, 88);
+    margin: 0 10px;
+  }
 
-.book-feedback a:hover,
-.book-feedback a:active {
-  color: salmon;
-}
+  .book-feedback a {
+    color: red;
+    text-decoration: none;
+  }
+
+  .book-feedback a:hover,
+  .book-feedback a:active {
+    color: salmon;
+  }
 </style>
