@@ -16,10 +16,10 @@
     },
     methods: {
       onSubmitted(postData) {
-        this.$axios
-          .post('http://localhost:5000/api/books/', postData)
-          .then(result => this.$router.push('/admin'))
-          .catch(e => console.log(e))
+        this.$store.dispatch("addBook", postData)
+        .then(()=>{
+          this.$router.push('/admin')
+        });
       }
     }
   };
