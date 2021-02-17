@@ -19,7 +19,7 @@
     },
     async asyncData({params, $axios}) {
       const loadedBook = await $axios
-        .$get(`${process.env.baseUrl}${params.bookId}`);
+        .$get(`${params.bookId}`);
       return {loadedBook};
     },
     methods: {

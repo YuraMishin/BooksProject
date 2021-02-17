@@ -25,7 +25,7 @@ export const mutations = {
 
 export const actions = {
   nuxtServerInit(vuexContext, context) {
-    return this.$axios.get(process.env.baseUrl)
+    return this.$axios.get()
       .then(response => {
         vuexContext.commit("setBooks", response.data);
       })
@@ -33,7 +33,7 @@ export const actions = {
   },
   addBook(vuexContext, book) {
     return this.$axios
-      .Book(process.env.baseUrl, book)
+      .post('', book)
       .then(result => {
         vuexContext.commit('addBook', book)
       })
@@ -41,7 +41,7 @@ export const actions = {
   },
   editBook(vuexContext, editedBook) {
     return this.$axios
-      .put(`${process.env.baseUrl}${editedBook.id}`, editedBook)
+      .put(`${editedBook.id}`, editedBook)
       .then(res => {
         vuexContext.commit('editBook', editedBook)
       })
