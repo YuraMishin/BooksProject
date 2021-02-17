@@ -3,6 +3,7 @@
     <section class="intro">
       <h1>Books Project</h1>
     </section>
+    {{new Date().toISOString() | date}}
     <BookList
       :books="loadedBooks"
     />
