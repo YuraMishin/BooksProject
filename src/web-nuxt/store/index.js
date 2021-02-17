@@ -25,7 +25,7 @@ export const mutations = {
 
 export const actions = {
   nuxtServerInit(vuexContext, context) {
-    return this.$axios.get('http://localhost:5000/api/books')
+    return this.$axios.get(process.env.baseUrl)
       .then(response => {
         vuexContext.commit("setBooks", response.data);
       })
@@ -33,7 +33,7 @@ export const actions = {
   },
   addBook(vuexContext, book) {
     return this.$axios
-      .Book("http://localhost:5000/api/books/", book)
+      .Book(process.env.baseUrl, book)
       .then(result => {
         vuexContext.commit('addBook', book)
       })
@@ -41,7 +41,7 @@ export const actions = {
   },
   editBook(vuexContext, editedBook) {
     return this.$axios
-      .put(`http://localhost:5000/api/books/${editedBook.id}`, editedBook)
+      .put(`${process.env.baseUrl}${editedBook.id}`, editedBook)
       .then(res => {
         vuexContext.commit('editBook', editedBook)
       })

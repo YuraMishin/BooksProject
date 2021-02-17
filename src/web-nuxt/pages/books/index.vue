@@ -15,6 +15,9 @@
       loadedBooks() {
         return this.$store.getters.loadedBooks
       }
+    },
+    head:{
+      title: 'Books'
     }
   };
 </script>

@@ -19,17 +19,13 @@
     },
     async asyncData({params, $axios}) {
       const loadedBook = await $axios
-        .$get(`http://localhost:5000/api/books/${params.bookId}`);
+        .$get(`${process.env.baseUrl}${params.bookId}`);
       return {loadedBook};
     },
     methods: {
       onSubmitted(editedBook) {
-        // this.$axios
-        //   .$put(`http://localhost:5000/api/books/${this.$route.params.bookId}`, editedBook)
-        //   .then(res => this.$router.push('/admin'))
-        //   .catch(e => console.log(e));
         this.$store.dispatch("editBook", editedBook)
-          .then(()=>{
+          .then(() => {
             this.$router.push('/admin')
           });
       }

@@ -19,7 +19,7 @@
   export default {
     async asyncData({$axios, params}) {
       const loadedBook = await $axios
-        .$get(`http://localhost:5000/api/books/${params.id}`);
+        .$get(`${process.env.baseUrl}${params.id}`);
       return {loadedBook};
     }
   };
