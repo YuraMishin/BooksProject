@@ -17,35 +17,29 @@
 </template>
 
 <script>
-import BookList from '@/components/Books/BookList'
-import AppButton from "../../components/UI/AppButton";
 
-export default {
-  layout: 'admin',
-  components: {
-    BookList,
-    AppButton
-  },
-  computed: {
-    loadedBooks() {
-      return this.$store.getters.loadedBooks;
+  export default {
+    layout: 'admin',
+    computed: {
+      loadedBooks() {
+        return this.$store.getters.loadedBooks;
+      }
     }
   }
-}
 </script>
 
 <style scoped>
-.admin-page {
-  padding: 20px;
-}
+  .admin-page {
+    padding: 20px;
+  }
 
-.new-book {
-  text-align: center;
-  border-bottom: 2px solid #ccc;
-  padding-bottom: 10px;
-}
+  .new-book {
+    text-align: center;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+  }
 
-.existing-books h2 {
-  text-align: center;
-}
+  .existing-books h2 {
+    text-align: center;
+  }
 </style>

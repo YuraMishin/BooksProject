@@ -10,10 +10,7 @@
 </template>
 
 <script>
-
-  import BookList from "../components/Books/BookList";
   export default {
-    components: {BookList},
     computed: {
       loadedBooks() {
         return this.$store.getters.loadedBooks;

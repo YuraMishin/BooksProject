@@ -12,15 +12,9 @@
 </template>
 
 <script>
-  import { v4 as uuid } from 'uuid';
-  import AppControlInput from "@/components/UI/AppControlInput";
-  import AppButton from "@/components/UI/AppButton";
+  import {v4 as uuid} from 'uuid';
 
   export default {
-    components: {
-      AppControlInput,
-      AppButton
-    },
     props: {
       book: {
         type: Object,
