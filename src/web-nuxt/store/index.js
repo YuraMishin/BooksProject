@@ -14,6 +14,12 @@ export const mutations = {
   },
   addBook(state, book) {
     state.loadedBooks.push(book)
+  },
+  editBook(state, editedBook) {
+    const bookIndex = state.loadedBooks.findIndex(
+      book => book.id === editedBook.id
+    );
+    state.loadedBooks[bookIndex] = editedBook
   }
 }
 
@@ -27,10 +33,18 @@ export const actions = {
   },
   addBook(vuexContext, book) {
     return this.$axios
-      .post("http://localhost:5000/api/books/", book)
+      .Book("http://localhost:5000/api/books/", book)
       .then(result => {
         vuexContext.commit('addBook', book)
       })
       .catch(e => console.log(e));
+  },
+  editBook(vuexContext, editedBook) {
+    return this.$axios
+      .put(`http://localhost:5000/api/books/${editedBook.id}`, editedBook)
+      .then(res => {
+        vuexContext.commit('editBook', editedBook)
+      })
+      .catch(e => console.log(e))
   },
 }

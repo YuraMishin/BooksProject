@@ -24,10 +24,14 @@
     },
     methods: {
       onSubmitted(editedBook) {
-        this.$axios
-          .$put(`http://localhost:5000/api/books/${this.$route.params.bookId}`, editedBook)
-          .then(res => this.$router.push('/admin'))
-          .catch(e => console.log(e));
+        // this.$axios
+        //   .$put(`http://localhost:5000/api/books/${this.$route.params.bookId}`, editedBook)
+        //   .then(res => this.$router.push('/admin'))
+        //   .catch(e => console.log(e));
+        this.$store.dispatch("editBook", editedBook)
+          .then(()=>{
+            this.$router.push('/admin')
+          });
       }
     }
   }
