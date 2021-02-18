@@ -24,7 +24,7 @@
     },
     methods: {
       onSubmitted(editedBook) {
-        this.$store.dispatch("editBook", editedBook)
+        this.$store.dispatch("books/editBook2", editedBook)
           .then(() => {
             this.$router.push('/admin')
           });

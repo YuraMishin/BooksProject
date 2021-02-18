@@ -3,20 +3,25 @@
     <section class="new-book-form">
       <AdminBookForm @submit="onSubmitted"/>
     </section>
+    <section>
+      <CreateBook2/>
+    </section>
   </div>
 </template>
 
 <script>
   import AdminBookForm from "@/components/Admin/AdminBookForm";
+  import CreateBook2 from "../../../components/Admin/CreateBook2";
 
   export default {
     layout: 'admin',
     components: {
+      CreateBook2,
       AdminBookForm
     },
     methods: {
       onSubmitted(postData) {
-        this.$store.dispatch("addBook", postData)
+        this.$store.dispatch("books/addBook2", postData)
         .then(()=>{
           this.$router.push('/admin')
         });

@@ -4,19 +4,21 @@
       <h1>Books Project</h1>
     </section>
     {{new Date().toISOString() | date}}
-    <BookList
-      :books="loadedBooks"
-    />
+    <BookList v-if="books"
+              :books="books"/>
   </div>
 </template>
 
 <script>
+  import {mapState} from 'vuex';
+
   export default {
     computed: {
-      loadedBooks() {
-        return this.$store.getters.loadedBooks;
-      }
-    }
+      ...mapState('books', {
+        books: state => state.books
+      })
+    },
+    methods: {}
   };
 </script>
 

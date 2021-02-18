@@ -9,7 +9,8 @@
       <h1>Admin</h1>
       <h2>Books</h2>
       <BookList
-        :books="loadedBooks"
+        v-if="books"
+        :books="books"
         isAdmin
       />
     </section>
@@ -17,13 +18,14 @@
 </template>
 
 <script>
+  import {mapState} from 'vuex';
 
   export default {
     layout: 'admin',
     computed: {
-      loadedBooks() {
-        return this.$store.getters.loadedBooks;
-      }
+      ...mapState('books', {
+        books: state => state.books
+      })
     }
   }
 </script>

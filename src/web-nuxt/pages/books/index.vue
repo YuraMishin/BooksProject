@@ -1,15 +1,18 @@
 <template>
   <div class="books-page">
-    <BookList :books="loadedBooks"/>
+    <BookList v-if="books"
+              :books="books"/>
   </div>
 </template>
 
 <script>
+  import {mapState} from 'vuex';
+
   export default {
     computed: {
-      loadedBooks() {
-        return this.$store.getters.loadedBooks
-      }
+      ...mapState('books', {
+        books: state => state.books
+      })
     },
     head: {
       title: 'Books'
