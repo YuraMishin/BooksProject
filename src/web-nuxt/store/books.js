@@ -26,16 +26,16 @@ export const mutations = {
 // async
 export const actions = {
   async fetchBooks({commit}) {
-    const books = (await this.$axios.$get(''));
+    const books = (await this.$axios.$get('books/'));
     commit('setBooks', {books});
   },
   async addBook({dispatch}, {book}) {
-    await this.$axios.$post('', book);
+    await this.$axios.$post('books/', book);
     await dispatch("fetchBooks");
   },
   async addBook2(vuexContext, book) {
     return this.$axios
-      .post('', book)
+      .post('books/', book)
       .then(result => {
         vuexContext.commit('addBook', book)
       })
@@ -43,7 +43,7 @@ export const actions = {
   },
   async editBook2(vuexContext, editedBook) {
     return this.$axios
-      .put(`${editedBook.id}`, editedBook)
+      .put(`books/${editedBook.id}`, editedBook)
       .then(res => {
         vuexContext.commit('editBook', editedBook)
       })

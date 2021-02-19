@@ -53,7 +53,7 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: process.env.BASE_URL || 'http://localhost:5000/api/books/',
+    baseURL: process.env.BASE_URL || 'http://localhost:5000/api/',
     credentials: false
   },
 
@@ -80,7 +80,7 @@ export default {
   build: {},
 
   env: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:5000/api/books/'
+    baseUrl: process.env.BASE_URL || 'http://localhost:5000/api/'
   },
 
   transition:{

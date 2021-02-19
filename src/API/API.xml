@@ -61,6 +61,26 @@
             <param name="id">id</param>
             <returns>JSON</returns>
         </member>
+        <member name="T:API.Controllers.VideosController">
+            <summary>
+            Class VideosController.
+            Implements video file uploading
+            </summary>
+        </member>
+        <member name="M:API.Controllers.VideosController.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="env">env</param>
+        </member>
+        <member name="M:API.Controllers.VideosController.UploadVideo(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Method handles file uploading
+            POST: /api/videos/{file}
+            </summary>
+            <param name="video"></param>
+            <returns></returns>
+        </member>
         <member name="T:API.Extensions.ApplicationServiceExtensions">
             <summary>
             Class ApplicationServiceExtensions

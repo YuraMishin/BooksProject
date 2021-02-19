@@ -19,7 +19,7 @@
     },
     async asyncData({params, $axios}) {
       const loadedBook = await $axios
-        .$get(`${params.bookId}`);
+        .$get(`books/${params.bookId}`);
       return {loadedBook};
     },
     methods: {

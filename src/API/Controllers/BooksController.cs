@@ -1,6 +1,5 @@
 using System;
 using System.Threading.Tasks;
-using Application.Activities;
 using Application.Books;
 using Domain;
 using MediatR;

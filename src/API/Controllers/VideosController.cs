@@ -1,0 +1,47 @@
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace API.Controllers
+{
+  /// <summary>
+  /// Class VideosController.
+  /// Implements video file uploading
+  /// </summary>
+  [Route("api/[controller]")]
+  public class VideosController : ControllerBase
+  {
+    private readonly IWebHostEnvironment _env;
+
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="env">env</param>
+    public VideosController(IWebHostEnvironment env)
+    {
+      _env = env;
+    }
+
+    /// <summary>
+    /// Method handles file uploading
+    /// POST: /api/videos/{file}
+    /// </summary>
+    /// <param name="video"></param>
+    /// <returns></returns>
+    [HttpPost]
+    public async Task<IActionResult> UploadVideo(IFormFile video)
+    {
+      var mime = video.FileName.Split('.').Last();
+      var fileName = string.Concat(Path.GetRandomFileName(), '.', mime);
+      var savePath = Path.Combine(_env.WebRootPath, fileName);
+      await using var fileStream =
+        new FileStream(savePath, FileMode.Create, FileAccess.Write);
+      await video.CopyToAsync(fileStream);
+
+      return Ok();
+    }
+  }
+}

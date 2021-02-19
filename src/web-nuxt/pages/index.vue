@@ -3,7 +3,8 @@
     <section class="intro">
       <h1>Books Project</h1>
     </section>
-    {{new Date().toISOString() | date}}
+    <p>{{new Date().toISOString() | date}}</p>
+    <p><nuxt-link to="/fileupload">File Upload</nuxt-link></p>
     <BookList v-if="books"
               :books="books"/>
   </div>
