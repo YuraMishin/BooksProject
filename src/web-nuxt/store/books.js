@@ -30,7 +30,6 @@ export const actions = {
     commit('setBooks', {books});
   },
   async addBook({dispatch}, {book}) {
-    // console.log(book);
     await this.$axios.$post('books/', book);
     await dispatch("fetchBooks");
   },
