@@ -25,6 +25,11 @@
             Title
             </summary>
         </member>
+        <member name="P:Application.Books.Create.Command.Video">
+            <summary>
+            Video
+            </summary>
+        </member>
         <member name="T:Application.Books.Create.CommandValidator">
             <summary>
             Class CommandValidator.
@@ -53,6 +58,46 @@
             <param name="context">context</param>
         </member>
         <member name="M:Application.Books.Create.Handler.Handle(Application.Books.Create.Command,System.Threading.CancellationToken)">
+            <summary>
+            Method performs the feature
+            </summary>
+            <param name="request">request</param>
+            <param name="cancellationToken">cancellationToken</param>
+            <returns>JSON</returns>
+        </member>
+        <member name="T:Application.Books.Delete">
+            <summary>
+            Class Details.
+            Implements deleting the specific book
+            </summary>
+        </member>
+        <member name="T:Application.Books.Delete.Command">
+            <summary>
+            Class Command
+            </summary>
+        </member>
+        <member name="P:Application.Books.Delete.Command.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="T:Application.Books.Delete.Handler">
+            <summary>
+             Class Handler
+            </summary>
+        </member>
+        <member name="F:Application.Books.Delete.Handler._context">
+            <summary>
+            DataContext
+            </summary>
+        </member>
+        <member name="M:Application.Books.Delete.Handler.#ctor(Persistence.DataContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="context">context</param>
+        </member>
+        <member name="M:Application.Books.Delete.Handler.Handle(Application.Books.Delete.Command,System.Threading.CancellationToken)">
             <summary>
             Method performs the feature
             </summary>

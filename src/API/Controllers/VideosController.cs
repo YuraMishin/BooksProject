@@ -41,7 +41,21 @@ namespace API.Controllers
         new FileStream(savePath, FileMode.Create, FileAccess.Write);
       await video.CopyToAsync(fileStream);
 
-      return Ok();
+      return Ok(fileName);
+    }
+
+    /// <summary>
+    /// Method streams the video file
+    /// GET: /api/videos/{video}
+    /// </summary>
+    /// <param name="video">video</param>
+    /// <returns>File</returns>
+    [HttpGet("{video}")]
+    public IActionResult GetVideo(string video)
+    {
+      var mime = video.Split('.').Last();
+      var savePath = Path.Combine(_env.WebRootPath, video);
+      return new FileStreamResult(new FileStream(savePath, FileMode.Open, FileAccess.Read), "video/*");
     }
   }
 }

@@ -81,6 +81,14 @@
             <param name="video"></param>
             <returns></returns>
         </member>
+        <member name="M:API.Controllers.VideosController.GetVideo(System.String)">
+            <summary>
+            Method streams the video file
+            GET: /api/videos/{video}
+            </summary>
+            <param name="video">video</param>
+            <returns>File</returns>
+        </member>
         <member name="T:API.Extensions.ApplicationServiceExtensions">
             <summary>
             Class ApplicationServiceExtensions

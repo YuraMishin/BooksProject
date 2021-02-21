@@ -28,6 +28,9 @@ namespace Persistence.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("text");
 
+                    b.Property<string>("Video")
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.ToTable("Books");

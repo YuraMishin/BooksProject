@@ -28,6 +28,11 @@ namespace Application.Books
       /// Title
       /// </summary>
       public string Title { get; set; }
+
+      /// <summary>
+      /// Video
+      /// </summary>
+      public string Video { get; set; }
     }
 
     /// <summary>
@@ -75,8 +80,8 @@ namespace Application.Books
         var book = new Book
         {
           Id = request.Id,
-          Title = request.Title
-
+          Title = request.Title,
+          Video = request.Video
         };
 
         _context.Books.Add(book);

@@ -69,6 +69,30 @@
             </summary>
             <param name="modelBuilder">modelBuilder</param>
         </member>
+        <member name="T:Persistence.Migrations.AddVideoPropToBook">
+            <summary>
+            Class AddVideoPropToBook.
+            Adds Video Prop to Book entity
+            </summary>
+        </member>
+        <member name="M:Persistence.Migrations.AddVideoPropToBook.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method performs the migration
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:Persistence.Migrations.AddVideoPropToBook.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method rollbacks the migration
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:Persistence.Migrations.AddVideoPropToBook.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Method builds target model
+            </summary>
+            <param name="modelBuilder">modelBuilder</param>
+        </member>
         <member name="T:Persistence.Seeders.BooksSeeder">
             <summary>
             Class BookSeeder.

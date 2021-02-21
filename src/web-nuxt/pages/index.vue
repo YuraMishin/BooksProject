@@ -5,6 +5,7 @@
     </section>
     <p>{{new Date().toISOString() | date}}</p>
     <p><nuxt-link to="/fileupload">File Upload</nuxt-link></p>
+    <p><nuxt-link to="/createBook">Create Book + Video</nuxt-link></p>
     <BookList v-if="books"
               :books="books"/>
   </div>

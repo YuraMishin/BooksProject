@@ -17,5 +17,10 @@ namespace Domain
     /// Title
     /// </summary>
     public string Title { get; set; }
+
+    /// <summary>
+    /// Video
+    /// </summary>
+    public string Video { get; set; }
   }
 }
