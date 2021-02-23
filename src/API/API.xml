@@ -15,7 +15,7 @@
             IMediator
             </summary>
         </member>
-        <member name="M:API.Controllers.BooksController.#ctor(MediatR.IMediator)">
+        <member name="M:API.Controllers.BooksController.#ctor(MediatR.IMediator,Persistence.DataContext)">
             <summary>
             Constructor
             </summary>
@@ -57,6 +57,62 @@
             <summary>
             Method updates the book.
             DELETE: /api/books/id
+            </summary>
+            <param name="id">id</param>
+            <returns>JSON</returns>
+        </member>
+        <member name="T:API.Controllers.SubmissionsController">
+            <summary>
+            Class BooksController.
+            Implements Submissions API
+            </summary>
+        </member>
+        <member name="F:API.Controllers.SubmissionsController._ctx">
+            <summary>
+            Context
+            </summary>
+        </member>
+        <member name="M:API.Controllers.SubmissionsController.#ctor(Persistence.DataContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="ctx">context</param>
+        </member>
+        <member name="M:API.Controllers.SubmissionsController.All">
+            <summary>
+            Method retrieves all the submissions.
+            GET: /api/submissions
+            </summary>
+            <returns>JSON</returns>
+        </member>
+        <member name="M:API.Controllers.SubmissionsController.Get(System.Guid)">
+            <summary>
+            Method retrieves the specific submission.
+            GET: /api/submissions/{id}
+            </summary>
+            <param name="id">id</param>
+            <returns>JSON</returns>
+        </member>
+        <member name="M:API.Controllers.SubmissionsController.Create(Domain.Submission)">
+            <summary>
+            Method creates a submission.
+            POST: /api/submissions
+            </summary>
+            <param name="submission">submission</param>
+            <returns>JSON</returns>
+        </member>
+        <member name="M:API.Controllers.SubmissionsController.Update(Domain.Submission)">
+            <summary>
+            Method updates the submission.
+            PUT: /api/submissions
+            </summary>
+            <param name="submission">submission</param>
+            <returns>JSON</returns>
+        </member>
+        <member name="M:API.Controllers.SubmissionsController.Delete(System.Int32)">
+            <summary>
+            Method deletes the submission.
+            DELETE: /api/submissions/id
             </summary>
             <param name="id">id</param>
             <returns>JSON</returns>

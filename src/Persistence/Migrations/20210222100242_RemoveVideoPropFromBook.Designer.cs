@@ -2,14 +2,23 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Persistence.Migrations
 {
+  /// <summary>
+  /// Class RemoveVideoPropFromBook
+  /// </summary>
   [DbContext(typeof(DataContext))]
-  partial class DataContextModelSnapshot : ModelSnapshot
+  [Migration("20210222100242_RemoveVideoPropFromBook")]
+  partial class RemoveVideoPropFromBook
   {
-    protected override void BuildModel(ModelBuilder modelBuilder)
+    /// <summary>
+    /// Method builds target model
+    /// </summary>
+    /// <param name="modelBuilder">modelBuilder</param>
+    protected override void BuildTargetModel(ModelBuilder modelBuilder)
     {
 #pragma warning disable 612, 618
       modelBuilder
@@ -29,26 +38,6 @@ namespace Persistence.Migrations
             b.HasKey("Id");
 
             b.ToTable("Books");
-          });
-
-      modelBuilder.Entity("Domain.Submission", b =>
-          {
-            b.Property<Guid>("Id")
-                      .ValueGeneratedOnAdd()
-                      .HasColumnType("uuid");
-
-            b.Property<Guid>("BookId")
-                      .HasColumnType("uuid");
-
-            b.Property<string>("Description")
-                      .HasColumnType("text");
-
-            b.Property<string>("Video")
-                      .HasColumnType("text");
-
-            b.HasKey("Id");
-
-            b.ToTable("Submissions");
           });
 #pragma warning restore 612, 618
     }

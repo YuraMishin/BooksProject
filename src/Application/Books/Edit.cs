@@ -20,7 +20,7 @@ namespace Application.Books
     /// <summary>
     /// Class Command
     /// </summary>
-    public class Command : IRequest
+    public class Command : IRequest<Book>
     {
       /// <summary>
       /// Book
@@ -32,21 +32,21 @@ namespace Application.Books
     /// Class CommandValidator.
     /// Implements validator
     /// </summary>
-    public class CommandValidator : AbstractValidator<Create.Command>
+    public class CommandValidator : AbstractValidator<Command>
     {
       /// <summary>
       /// Method handles validation
       /// </summary>
       public CommandValidator()
       {
-        RuleFor(x => x.Title).NotEmpty().WithMessage("Wrong credentials");
+        RuleFor(x => x.Book.Title).NotEmpty().WithMessage("Wrong credentials");
       }
     }
 
     /// <summary>
     ///  Class Handler
     /// </summary>
-    public class Handler : IRequestHandler<Command>
+    public class Handler : IRequestHandler<Command, Book>
     {
       /// <summary>
       /// DataContext
@@ -75,7 +75,7 @@ namespace Application.Books
       /// <param name="request">request</param>
       /// <param name="cancellationToken">cancellationToken</param>
       /// <returns>JSON</returns>
-      public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+      public async Task<Book> Handle(Command request, CancellationToken cancellationToken)
       {
         var book = await _context.Books.FindAsync(request.Book.Id);
 
@@ -90,7 +90,7 @@ namespace Application.Books
 
         var success = await _context.SaveChangesAsync() > 0;
 
-        if (success) return Unit.Value;
+        if (success) return book;
 
         throw new Exception("Problem saving changes");
       }

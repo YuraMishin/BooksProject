@@ -22,6 +22,11 @@ namespace Persistence
     /// Books
     /// </summary>
     public DbSet<Book> Books { get; set; }
+
+    /// <summary>
+    /// Submissions
+    /// </summary>
+    public DbSet<Submission> Submissions { get; set; }
     #endregion
   }
 }

@@ -24,15 +24,7 @@ namespace Persistence.Seeders
                     new Book
                     {
                         Title = "Book 1"
-                    },
-                    new Book
-                    {
-                        Title = "Book 2"
-                    },
-                    new Book
-                    {
-                        Title = "Book 3"
-                    },
+                    }
                 };
 
         await context.Books.AddRangeAsync(books);

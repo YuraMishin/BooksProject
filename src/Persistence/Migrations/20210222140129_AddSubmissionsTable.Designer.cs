@@ -2,34 +2,29 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Persistence.Migrations
 {
+  /// <summary>
+  /// Class AddSubmissionsTable
+  /// </summary>
   [DbContext(typeof(DataContext))]
-  partial class DataContextModelSnapshot : ModelSnapshot
+  [Migration("20210222140129_AddSubmissionsTable")]
+  partial class AddSubmissionsTable
   {
-    protected override void BuildModel(ModelBuilder modelBuilder)
+    /// <summary>
+    /// Method builds target model
+    /// </summary>
+    /// <param name="modelBuilder">modelBuilder</param>
+    protected override void BuildTargetModel(ModelBuilder modelBuilder)
     {
 #pragma warning disable 612, 618
       modelBuilder
           .HasAnnotation("Relational:MaxIdentifierLength", 63)
           .HasAnnotation("ProductVersion", "5.0.3")
           .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-      modelBuilder.Entity("Domain.Book", b =>
-          {
-            b.Property<Guid>("Id")
-                      .ValueGeneratedOnAdd()
-                      .HasColumnType("uuid");
-
-            b.Property<string>("Title")
-                      .HasColumnType("text");
-
-            b.HasKey("Id");
-
-            b.ToTable("Books");
-          });
 
       modelBuilder.Entity("Domain.Submission", b =>
           {

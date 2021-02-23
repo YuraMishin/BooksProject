@@ -3,11 +3,8 @@
     <v-app-bar app dense>
       <v-toolbar-title>Books Project</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn depressed @click="toggleActivity">
-        Upload
-      </v-btn>
+      <video-upload/>
     </v-app-bar>
-    <video-upload/>
     <v-main>
         <nuxt/>
     </v-main>
@@ -15,12 +12,10 @@
 </template>
 
 <script>
-  import {mapMutations} from 'vuex'
   import VideoUpload from "../components/video-upload";
   export default {
     name: "index2Layout",
-    components: {VideoUpload},
-    methods: mapMutations('video-upload', ['toggleActivity']),
+    components: {VideoUpload}
   }
 </script>
 

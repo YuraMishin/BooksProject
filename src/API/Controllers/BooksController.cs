@@ -1,9 +1,12 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Application.Books;
 using Domain;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Persistence;
 
 namespace API.Controllers
 {
@@ -20,13 +23,16 @@ namespace API.Controllers
     /// </summary>
     private readonly IMediator _mediator;
 
+    private readonly DataContext _context;
+
     /// <summary>
     /// Constructor
     /// </summary>
     /// <param name="mediator">mediator</param>
-    public BooksController(IMediator mediator)
+    public BooksController(IMediator mediator, DataContext context)
     {
       _mediator = mediator;
+      _context = context;
     }
 
     /// <summary>
@@ -35,10 +41,9 @@ namespace API.Controllers
     /// </summary>
     /// <returns>JSON</returns>
     [HttpGet]
-    public async Task<IActionResult> List()
-    {
-      return Ok(await _mediator.Send(new List.Query()));
-    }
+    public async Task<IActionResult> List() => Ok(
+      await _mediator.Send(new List.Query())
+      );
 
     /// <summary>
     /// Method retrieves the specific book.
@@ -88,6 +93,18 @@ namespace API.Controllers
     public async Task<ActionResult> Delete(Guid id)
     {
       return Ok(await _mediator.Send(new Delete.Command { Id = id }));
+    }
+
+    // / api/books/{bookId}/submissions
+    [HttpGet("{bookId}/submissions")]
+    public async Task<IActionResult> ListSubmissionsForBook(Guid bookId)
+    {
+      var result = await _context
+        .Submissions
+        .Where(submission => submission.BookId.Equals(bookId))
+        .ToListAsync();
+
+      return Ok(result);
     }
   }
 }

@@ -25,11 +25,6 @@
             Title
             </summary>
         </member>
-        <member name="P:Application.Books.Create.Command.Video">
-            <summary>
-            Video
-            </summary>
-        </member>
         <member name="T:Application.Books.Create.CommandValidator">
             <summary>
             Class CommandValidator.

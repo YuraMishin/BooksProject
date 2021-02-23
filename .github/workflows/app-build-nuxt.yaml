@@ -13,11 +13,14 @@ jobs:
     steps:
       - name: Pull Code
         uses: actions/checkout@v2
-      - uses: actions/setup-node@v2-beta
+      - uses: actions/setup-node@v2
         with:
-          node-version: '12'
+          node-version: '14'
       - name: Install Dependencies
-        run: npm install
+        run: |
+          npm install
+          npm uninstall @babel/preset-env
+          npm install @babel/preset-env@7.12.13
         working-directory: ./src/web-nuxt
       - name: Build
         run: npm run build

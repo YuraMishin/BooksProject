@@ -21,6 +21,11 @@
             Books
             </summary>
         </member>
+        <member name="P:Persistence.DataContext.Submissions">
+            <summary>
+            Submissions
+            </summary>
+        </member>
         <member name="T:Persistence.Migrations.CreateDatabase">
             <summary>
             Class CreateDatabase.
@@ -88,6 +93,52 @@
             <param name="migrationBuilder">migrationBuilder</param>
         </member>
         <member name="M:Persistence.Migrations.AddVideoPropToBook.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Method builds target model
+            </summary>
+            <param name="modelBuilder">modelBuilder</param>
+        </member>
+        <member name="T:Persistence.Migrations.RemoveVideoPropFromBook">
+            <summary>
+            Class RemoveVideoPropFromBook
+            </summary>
+        </member>
+        <member name="M:Persistence.Migrations.RemoveVideoPropFromBook.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method performs the migration
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:Persistence.Migrations.RemoveVideoPropFromBook.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method rollbacks the migration
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:Persistence.Migrations.RemoveVideoPropFromBook.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Method builds target model
+            </summary>
+            <param name="modelBuilder">modelBuilder</param>
+        </member>
+        <member name="T:Persistence.Migrations.AddSubmissionsTable">
+            <summary>
+            Class AddSubmissionsTable
+            </summary>
+        </member>
+        <member name="M:Persistence.Migrations.AddSubmissionsTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method performs the migration
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:Persistence.Migrations.AddSubmissionsTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method rollbacks the migration
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:Persistence.Migrations.AddSubmissionsTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <summary>
             Method builds target model
             </summary>

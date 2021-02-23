@@ -17,7 +17,7 @@ namespace Application.Books
     /// <summary>
     /// Class Command
     /// </summary>
-    public class Command : IRequest
+    public class Command : IRequest<Book>
     {
       /// <summary>
       /// Id
@@ -28,11 +28,6 @@ namespace Application.Books
       /// Title
       /// </summary>
       public string Title { get; set; }
-
-      /// <summary>
-      /// Video
-      /// </summary>
-      public string Video { get; set; }
     }
 
     /// <summary>
@@ -53,7 +48,7 @@ namespace Application.Books
     /// <summary>
     /// Class Handler
     /// </summary>
-    public class Handler : IRequestHandler<Command>
+    public class Handler : IRequestHandler<Command, Book>
     {
       /// <summary>
       /// DataContext
@@ -75,19 +70,18 @@ namespace Application.Books
       /// <param name="request">request</param>
       /// <param name="cancellationToken">cancellationToken</param>
       /// <returns>JSON</returns>
-      public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+      public async Task<Book> Handle(Command request, CancellationToken cancellationToken)
       {
         var book = new Book
         {
           Id = request.Id,
           Title = request.Title,
-          Video = request.Video
         };
 
         _context.Books.Add(book);
         var success = await _context.SaveChangesAsync() > 0;
 
-        if (success) return Unit.Value;
+        if (success) return book;
 
         throw new Exception("Problem saving changes");
       }
