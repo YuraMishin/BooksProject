@@ -3,7 +3,6 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Errors;
-using AutoMapper;
 using Domain;
 using FluentValidation;
 using MediatR;
@@ -23,9 +22,14 @@ namespace Application.Books
     public class Command : IRequest<Book>
     {
       /// <summary>
-      /// Book
+      /// Id
       /// </summary>
-      public Book Book { get; set; }
+      public Guid Id { get; set; }
+
+      /// <summary>
+      /// Title
+      /// </summary>
+      public string Title { get; set; }
     }
 
     /// <summary>
@@ -39,7 +43,7 @@ namespace Application.Books
       /// </summary>
       public CommandValidator()
       {
-        RuleFor(x => x.Book.Title).NotEmpty().WithMessage("Wrong credentials");
+        RuleFor(x => x.Title).NotEmpty().WithMessage("Wrong credentials");
       }
     }
 
@@ -54,19 +58,12 @@ namespace Application.Books
       private readonly DataContext _context;
 
       /// <summary>
-      /// IMapper
-      /// </summary>
-      private readonly IMapper _mapper;
-
-      /// <summary>
       /// Constructor
       /// </summary>
       /// <param name="context">context</param>
-      /// <param name="mapper">mapper</param>
-      public Handler(DataContext context, IMapper mapper)
+      public Handler(DataContext context)
       {
         _context = context;
-        _mapper = mapper;
       }
 
       /// <summary>
@@ -77,14 +74,14 @@ namespace Application.Books
       /// <returns>JSON</returns>
       public async Task<Book> Handle(Command request, CancellationToken cancellationToken)
       {
-        var book = await _context.Books.FindAsync(request.Book.Id);
+        var book = await _context.Books.FindAsync(request.Id);
 
         if (book == null)
           throw new RestException(
             HttpStatusCode.NotFound,
             new { Activity = "Not found" });
 
-        _mapper.Map(request.Book, book);
+        book.Title = request.Title ?? book.Title;
 
         _context.Update(book);
 

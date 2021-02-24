@@ -1,10 +1,12 @@
+using System;
+
 namespace Domain
 {
   /// <summary>
   /// Class Book.
   /// Implements Book Entity
   /// </summary>
-  public class Book : BaseModel
+  public class Book : BaseModel<Guid>
   {
     /// <summary>
     /// Title

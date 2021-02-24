@@ -1,16 +1,14 @@
-using System;
-
 namespace Domain
 {
   /// <summary>
   /// Class BaseModel.
   /// Declares base model
   /// </summary>
-  public abstract class BaseModel
+  public abstract class BaseModel<TKey>
   {
     /// <summary>
     /// Id
     /// </summary>
-    public Guid Id { get; set; }
+    public TKey Id { get; set; }
   }
 }

@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Books;
-using Domain;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +28,7 @@ namespace API.Controllers
     /// Constructor
     /// </summary>
     /// <param name="mediator">mediator</param>
+    /// <param name="context">context</param>
     public BooksController(IMediator mediator, DataContext context)
     {
       _mediator = mediator;
@@ -74,13 +74,13 @@ namespace API.Controllers
     /// PUT: /api/books/id
     /// </summary>
     /// <param name="id">id</param>
-    /// <param name="book">book</param>
+    /// <param name="command">command</param>
     /// <returns>JSON</returns>
     [HttpPut("{id}")]
-    public async Task<IActionResult> Edit(Guid id, Book book)
+    public async Task<IActionResult> Edit(Guid id, Edit.Command command)
     {
-      book.Id = id;
-      return Ok(await _mediator.Send(new Edit.Command { Book = book }));
+      command.Id = id;
+      return Ok(await _mediator.Send(command));
     }
 
     /// <summary>
@@ -95,7 +95,12 @@ namespace API.Controllers
       return Ok(await _mediator.Send(new Delete.Command { Id = id }));
     }
 
-    // / api/books/{bookId}/submissions
+    /// <summary>
+    /// Method fetches all the submissions for the specific id.
+    /// GET: api/books/{bookId}/submissions
+    /// </summary>
+    /// <param name="bookId"></param>
+    /// <returns></returns>
     [HttpGet("{bookId}/submissions")]
     public async Task<IActionResult> ListSubmissionsForBook(Guid bookId)
     {

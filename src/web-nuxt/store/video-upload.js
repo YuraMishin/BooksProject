@@ -47,10 +47,7 @@ export const actions = {
       console.log(createdBook)
       submission.bookId = createdBook.id
     }
-    const createdSubmission = await this
+    await this
       .$axios.$post("submissions/", submission)
-
-    await dispatch("books/fetchBooks", null, {root: true});
-    await dispatch("submissions/fetchSubmissions", null, {root: true})
   },
 }

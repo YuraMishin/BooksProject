@@ -20,6 +20,7 @@
             Constructor
             </summary>
             <param name="mediator">mediator</param>
+            <param name="context">context</param>
         </member>
         <member name="M:API.Controllers.BooksController.List">
             <summary>
@@ -44,13 +45,13 @@
             <param name="command">command</param>
             <returns>JSON</returns>
         </member>
-        <member name="M:API.Controllers.BooksController.Edit(System.Guid,Domain.Book)">
+        <member name="M:API.Controllers.BooksController.Edit(System.Guid,Application.Books.Edit.Command)">
             <summary>
             Method updates the book.
             PUT: /api/books/id
             </summary>
             <param name="id">id</param>
-            <param name="book">book</param>
+            <param name="command">command</param>
             <returns>JSON</returns>
         </member>
         <member name="M:API.Controllers.BooksController.Delete(System.Guid)">
@@ -60,6 +61,14 @@
             </summary>
             <param name="id">id</param>
             <returns>JSON</returns>
+        </member>
+        <member name="M:API.Controllers.BooksController.ListSubmissionsForBook(System.Guid)">
+            <summary>
+            Method fetches all the submissions for the specific id.
+            GET: api/books/{bookId}/submissions
+            </summary>
+            <param name="bookId"></param>
+            <returns></returns>
         </member>
         <member name="T:API.Controllers.SubmissionsController">
             <summary>
