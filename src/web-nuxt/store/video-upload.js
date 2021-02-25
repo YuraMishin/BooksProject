@@ -1,39 +1,25 @@
-﻿import {UPLOAD_TYPE} from "../data/enum";
-
-const initState = () => ({
+﻿const initState = () => ({
   uploadPromise: null,
   active: false,
-  type: "",
-  step: 1,
+  component: null
 })
 
 export const state = initState
 
 export const mutations = {
-  toggleActivity(state) {
-    state.active = !state.active
-    if (!state.active) {
-      Object.assign(state, initState())
-    }
+  activate(state, {component}) {
+    state.active = true;
+    state.component = component
   },
-  setType(state, {type}) {
-    state.type = type
-    if (type === UPLOAD_TYPE.BOOK) {
-      state.step++;
-    } else if (type === UPLOAD_TYPE.SUBMISSION) {
-      state.step += 2;
-    }
+  hide(state) {
+    state.active = false;
   },
   setTask(state, {uploadPromise}) {
     state.uploadPromise = uploadPromise
-    state.step++
   },
   reset(state) {
     Object.assign(state, initState())
-  },
-  incStep(state) {
-    state.step++;
-  },
+  }
 }
 
 export const actions = {
@@ -41,13 +27,14 @@ export const actions = {
     const uploadPromise = this.$axios.$post("videos", form);
     commit("setTask", {uploadPromise})
   },
-  async addBook({state, dispatch}, {book, submission}) {
-    if (state.type === UPLOAD_TYPE.BOOK) {
-      const createdBook = await this.$axios.$post('books/', book);
-      console.log(createdBook)
-      submission.bookId = createdBook.id
+  async createSubmission({state, commit, dispatch}, {form}) {
+    if (!state.uploadPromise) {
+      console.log("uploadPromise is null")
+      return;
     }
-    await this
-      .$axios.$post("submissions/", submission)
-  },
+
+    form.video = await state.uploadPromise;
+    await dispatch('submissions/createSubmission', {form}, {root: true})
+    commit('reset')
+  }
 }

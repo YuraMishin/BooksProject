@@ -4,6 +4,13 @@ const initState = () => ({
 
 export const state = initState;
 
+export const getters = {
+  bookItems: state => state.books.map(x => ({
+    text: x.title,
+    value: x.id
+  }))
+}
+
 // sync
 export const mutations = {
   setBooks(state, {books}) {
@@ -29,9 +36,8 @@ export const actions = {
     const books = (await this.$axios.$get('books/'));
     commit('setBooks', {books});
   },
-  async addBook({dispatch}, {book}) {
-    await this.$axios.$post('books/', book);
-    await dispatch("fetchBooks");
+  addBook({dispatch}, {form}) {
+    return this.$axios.$post('books/', form);
   },
   async addBook2(vuexContext, book) {
     return this.$axios

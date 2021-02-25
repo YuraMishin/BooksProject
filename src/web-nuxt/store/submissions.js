@@ -8,18 +8,17 @@ export const mutations = {
   setSubmissions(state, {submissions}) {
     state.submissions = submissions
   },
-  reset(state){
+  reset(state) {
     Object.assign(state, initState())
   }
 }
 
 export const actions = {
-  async fetchSubmissions({commit}){
-    const submissions = await this.$axios.$get("submissions/");
-    commit("setSubmissions", {submissions})
-  },
-  async fetchSubmissionsForBook({commit}, {bookId}){
+  async fetchSubmissionsForBook({commit}, {bookId}) {
     const submissions = await this.$axios.$get(`books/${bookId}/submissions`);
     commit("setSubmissions", {submissions})
   },
+  createSubmission({state, commit, dispatch}, {form}) {
+    return this.$axios.$post("/submissions", form)
+  }
 }
