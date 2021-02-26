@@ -38,6 +38,21 @@ namespace Persistence.Migrations
                     b.ToTable("Books");
                 });
 
+            modelBuilder.Entity("Domain.BookRelationship", b =>
+                {
+                    b.Property<Guid>("PrerequisiteId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ProgressionId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("PrerequisiteId", "ProgressionId");
+
+                    b.HasIndex("ProgressionId");
+
+                    b.ToTable("BookRelationships");
+                });
+
             modelBuilder.Entity("Domain.Difficulty", b =>
                 {
                     b.Property<Guid>("Id")
@@ -81,6 +96,32 @@ namespace Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Difficulty");
+                });
+
+            modelBuilder.Entity("Domain.BookRelationship", b =>
+                {
+                    b.HasOne("Domain.Book", "Prerequisite")
+                        .WithMany("Progressions")
+                        .HasForeignKey("PrerequisiteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Book", "Progression")
+                        .WithMany("Prerequisites")
+                        .HasForeignKey("ProgressionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Prerequisite");
+
+                    b.Navigation("Progression");
+                });
+
+            modelBuilder.Entity("Domain.Book", b =>
+                {
+                    b.Navigation("Prerequisites");
+
+                    b.Navigation("Progressions");
                 });
 
             modelBuilder.Entity("Domain.Difficulty", b =>

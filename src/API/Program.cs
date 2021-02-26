@@ -36,7 +36,7 @@ namespace API
 
         // Seeds data
         await DifficultiesSeeder.SeedData(context);
-        await BooksSeeder.SeedData(context);
+        //await BooksSeeder.SeedData(context);
       }
       catch (Exception ex)
       {

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Domain
 {
@@ -25,5 +26,15 @@ namespace Domain
     public Difficulty Difficulty { get; set; }
 
     #endregion
+
+    /// <summary>
+    /// Prerequisites
+    /// </summary>
+    public IList<BookRelationship> Prerequisites { get; set; } = new List<BookRelationship>();
+
+    /// <summary>
+    /// Progressions
+    /// </summary>
+    public IList<BookRelationship> Progressions { get; set; } = new List<BookRelationship>();
   }
 }

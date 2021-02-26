@@ -31,6 +31,17 @@
             Difficulties
             </summary>
         </member>
+        <member name="P:Persistence.DataContext.BookRelationships">
+            <summary>
+            BookRelationships
+            </summary>
+        </member>
+        <member name="M:Persistence.DataContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Method finetunes DbContext via Fluent API
+            </summary>
+            <param name="modelBuilder"></param>
+        </member>
         <member name="T:Persistence.Migrations.CreateDatabase">
             <summary>
             Class CreateDatabase.
@@ -144,6 +155,75 @@
             <param name="migrationBuilder">migrationBuilder</param>
         </member>
         <member name="M:Persistence.Migrations.AddSubmissionsTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Method builds target model
+            </summary>
+            <param name="modelBuilder">modelBuilder</param>
+        </member>
+        <member name="T:Persistence.Migrations.AddDifficultiesTable">
+            <summary>
+            Class AddDifficultiesTable
+            </summary>
+        </member>
+        <member name="M:Persistence.Migrations.AddDifficultiesTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method performs the migration
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:Persistence.Migrations.AddDifficultiesTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method rollbacks the migration
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:Persistence.Migrations.AddDifficultiesTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Method builds target model
+            </summary>
+            <param name="modelBuilder">modelBuilder</param>
+        </member>
+        <member name="T:Persistence.Migrations.AddDifficultyToBookReference">
+            <summary>
+            Cass AddDifficultyToBookReference
+            </summary>
+        </member>
+        <member name="M:Persistence.Migrations.AddDifficultyToBookReference.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method performs the migration
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:Persistence.Migrations.AddDifficultyToBookReference.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method rollbacks the migration
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:Persistence.Migrations.AddDifficultyToBookReference.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Method builds target model
+            </summary>
+            <param name="modelBuilder">modelBuilder</param>
+        </member>
+        <member name="T:Persistence.Migrations.AddBookRelationshipsTable">
+            <summary>
+            Class AddBookRelationshipsTable
+            </summary>
+        </member>
+        <member name="M:Persistence.Migrations.AddBookRelationshipsTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method performs the migration
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:Persistence.Migrations.AddBookRelationshipsTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method rollbacks the migration
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:Persistence.Migrations.AddBookRelationshipsTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <summary>
             Method builds target model
             </summary>
