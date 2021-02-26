@@ -18,6 +18,6 @@ namespace Domain
     /// Books.
     /// One-To-Many
     /// </summary>
-    public IList<Book> Books { get; set; }
+    public IList<Book> Books { get; set; } = new List<Book>();
   }
 }

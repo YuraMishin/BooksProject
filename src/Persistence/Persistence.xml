@@ -26,6 +26,11 @@
             Submissions
             </summary>
         </member>
+        <member name="P:Persistence.DataContext.Difficulties">
+            <summary>
+            Difficulties
+            </summary>
+        </member>
         <member name="T:Persistence.Migrations.CreateDatabase">
             <summary>
             Class CreateDatabase.
@@ -151,6 +156,18 @@
             </summary>
         </member>
         <member name="M:Persistence.Seeders.BooksSeeder.SeedData(Persistence.DataContext)">
+            <summary>
+            Method performs the operation
+            </summary>
+            <param name="context">context</param>
+        </member>
+        <member name="T:Persistence.Seeders.DifficultiesSeeder">
+            <summary>
+            Class DifficultiesSeeder.
+            Seeds Difficulties table
+            </summary>
+        </member>
+        <member name="M:Persistence.Seeders.DifficultiesSeeder.SeedData(Persistence.DataContext)">
             <summary>
             Method performs the operation
             </summary>

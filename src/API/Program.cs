@@ -35,6 +35,7 @@ namespace API
         await context.Database.MigrateAsync();
 
         // Seeds data
+        await DifficultiesSeeder.SeedData(context);
         await BooksSeeder.SeedData(context);
       }
       catch (Exception ex)

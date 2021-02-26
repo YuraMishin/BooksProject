@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Seeders
 {
@@ -19,11 +20,17 @@ namespace Persistence.Seeders
     {
       if (!context.Books.Any())
       {
+        var diffDefaultName = context
+          .Difficulties
+          .SingleOrDefaultAsync(difficulty =>
+           difficulty.Description == "Easy")
+          .Result;
         var books = new List<Book>
                 {
                     new Book
                     {
-                        Title = "Book 1"
+                        Title = "Book 1",
+                        Difficulty = diffDefaultName
                     }
                 };
 
