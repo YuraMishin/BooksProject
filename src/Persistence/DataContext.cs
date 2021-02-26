@@ -28,6 +28,9 @@ namespace Persistence
     /// </summary>
     public DbSet<Submission> Submissions { get; set; }
 
+    /// <summary>
+    /// Difficulties
+    /// </summary>
     public DbSet<Difficulty> Difficulties { get; set; }
     #endregion
   }
