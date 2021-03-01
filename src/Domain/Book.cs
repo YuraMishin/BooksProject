@@ -14,6 +14,11 @@ namespace Domain
     /// </summary>
     public string Title { get; set; }
 
+    /// <summary>
+    /// Description
+    /// </summary>
+    public string Description { get; set; }
+
     #region Difficulty Many-To-One
 
     /// <summary>
