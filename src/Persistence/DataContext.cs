@@ -37,6 +37,8 @@ namespace Persistence
     /// BookRelationships
     /// </summary>
     public DbSet<BookRelationship> BookRelationships { get; set; }
+
+    public DbSet<Category> Categories { get; set; }
     #endregion
 
     /// <summary>
