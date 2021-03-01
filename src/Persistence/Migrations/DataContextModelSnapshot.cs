@@ -19,6 +19,21 @@ namespace Persistence.Migrations
                 .HasAnnotation("ProductVersion", "5.0.3")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+            modelBuilder.Entity("BookCategory", b =>
+                {
+                    b.Property<Guid>("BooksId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("CategoriesId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("BooksId", "CategoriesId");
+
+                    b.HasIndex("CategoriesId");
+
+                    b.ToTable("BookCategory");
+                });
+
             modelBuilder.Entity("Domain.Book", b =>
                 {
                     b.Property<Guid>("Id")
@@ -99,6 +114,21 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Submissions");
+                });
+
+            modelBuilder.Entity("BookCategory", b =>
+                {
+                    b.HasOne("Domain.Book", null)
+                        .WithMany()
+                        .HasForeignKey("BooksId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Category", null)
+                        .WithMany()
+                        .HasForeignKey("CategoriesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Book", b =>

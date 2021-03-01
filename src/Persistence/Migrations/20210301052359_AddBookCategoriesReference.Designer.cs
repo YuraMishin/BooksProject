@@ -8,8 +8,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Persistence.Migrations
 {
   [DbContext(typeof(DataContext))]
-  [Migration("20210301052135_AddCategoriesTable")]
-  partial class AddCategoriesTable
+  [Migration("20210301052359_AddBookCategoriesReference")]
+  partial class AddBookCategoriesReference
   {
     /// <summary>
     /// Method builds target model
@@ -22,6 +22,21 @@ namespace Persistence.Migrations
           .HasAnnotation("Relational:MaxIdentifierLength", 63)
           .HasAnnotation("ProductVersion", "5.0.3")
           .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+      modelBuilder.Entity("BookCategory", b =>
+          {
+            b.Property<Guid>("BooksId")
+                      .HasColumnType("uuid");
+
+            b.Property<Guid>("CategoriesId")
+                      .HasColumnType("uuid");
+
+            b.HasKey("BooksId", "CategoriesId");
+
+            b.HasIndex("CategoriesId");
+
+            b.ToTable("BookCategory");
+          });
 
       modelBuilder.Entity("Domain.Book", b =>
           {
@@ -103,6 +118,21 @@ namespace Persistence.Migrations
             b.HasKey("Id");
 
             b.ToTable("Submissions");
+          });
+
+      modelBuilder.Entity("BookCategory", b =>
+          {
+            b.HasOne("Domain.Book", null)
+                      .WithMany()
+                      .HasForeignKey("BooksId")
+                      .OnDelete(DeleteBehavior.Cascade)
+                      .IsRequired();
+
+            b.HasOne("Domain.Category", null)
+                      .WithMany()
+                      .HasForeignKey("CategoriesId")
+                      .OnDelete(DeleteBehavior.Cascade)
+                      .IsRequired();
           });
 
       modelBuilder.Entity("Domain.Book", b =>

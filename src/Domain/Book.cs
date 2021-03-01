@@ -36,5 +36,14 @@ namespace Domain
     /// Progressions
     /// </summary>
     public IList<BookRelationship> Progressions { get; set; } = new List<BookRelationship>();
+
+    #region Categories Many-To-Many
+
+    /// <summary>
+    /// Categories
+    /// </summary>
+    public IList<Category> Categories { get; set; } = new List<Category>();
+
+    #endregion
   }
 }
