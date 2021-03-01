@@ -303,6 +303,29 @@
             </summary>
             <param name="modelBuilder">modelBuilder</param>
         </member>
+        <member name="T:Persistence.Migrations.AddPropNameToCategory">
+            <summary>
+            Class AddPropNameToCategory
+            </summary>
+        </member>
+        <member name="M:Persistence.Migrations.AddPropNameToCategory.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method performs the migration
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:Persistence.Migrations.AddPropNameToCategory.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method rollbacks the migration
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:Persistence.Migrations.AddPropNameToCategory.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Method builds target model
+            </summary>
+            <param name="modelBuilder">modelBuilder</param>
+        </member>
         <member name="T:Persistence.Seeders.BooksSeeder">
             <summary>
             Class BookSeeder.
@@ -310,6 +333,18 @@
             </summary>
         </member>
         <member name="M:Persistence.Seeders.BooksSeeder.SeedData(Persistence.DataContext)">
+            <summary>
+            Method performs the operation
+            </summary>
+            <param name="context">context</param>
+        </member>
+        <member name="T:Persistence.Seeders.CategoriesSeeder">
+            <summary>
+            Class CategoriesSeeder.
+            Seeds Categories table
+            </summary>
+        </member>
+        <member name="M:Persistence.Seeders.CategoriesSeeder.SeedData(Persistence.DataContext)">
             <summary>
             Method performs the operation
             </summary>
