@@ -28,6 +28,16 @@ namespace Application.Books
       /// Title
       /// </summary>
       public string Title { get; set; }
+
+      /// <summary>
+      /// Description
+      /// </summary>
+      public string Description { get; set; }
+
+      /// <summary>
+      /// Difficulty
+      /// </summary>
+      public Guid Difficulty { get; set; }
     }
 
     /// <summary>
@@ -76,6 +86,8 @@ namespace Application.Books
         {
           Id = request.Id,
           Title = request.Title,
+          Description = request.Description,
+          DifficultyId = request.Difficulty
         };
 
         _context.Books.Add(book);

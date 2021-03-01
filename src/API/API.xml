@@ -37,12 +37,11 @@
             <param name="id">id</param>
             <returns>JSON</returns>
         </member>
-        <member name="M:API.Controllers.BooksController.Create(Application.Books.Create.Command)">
-            <summary>
-            Method creates a book.
+        <member name="M:API.Controllers.BooksController.Create(API.FormModels.BookFormModel)">
+            <summary> Method creates a book.
             POST: /api/books/
             </summary>
-            <param name="command">command</param>
+            <param name="bookForm">bookForm</param>
             <returns>JSON</returns>
         </member>
         <member name="M:API.Controllers.BooksController.Edit(System.Guid,Application.Books.Edit.Command)">
@@ -69,6 +68,30 @@
             </summary>
             <param name="bookId"></param>
             <returns></returns>
+        </member>
+        <member name="T:API.Controllers.DifficultiesController">
+            <summary>
+            Class DifficultiesController.
+            Implements Difficulties API
+            </summary>
+        </member>
+        <member name="F:API.Controllers.DifficultiesController._context">
+            <summary>
+            DataContext
+            </summary>
+        </member>
+        <member name="M:API.Controllers.DifficultiesController.#ctor(Persistence.DataContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="context">context</param>
+        </member>
+        <member name="M:API.Controllers.DifficultiesController.Index">
+            <summary>
+            Method retrieves all the difficulties.
+            GET: /api/difficulties
+            </summary>
+            <returns>JSON</returns>
         </member>
         <member name="T:API.Controllers.SubmissionsController">
             <summary>
@@ -168,6 +191,31 @@
             <param name="configuration">configuration</param>
             <returns>IServiceCollection</returns>
         </member>
+        <member name="T:API.FormModels.BookFormModel">
+            <summary>
+            Class BookFormModel
+            </summary>
+        </member>
+        <member name="P:API.FormModels.BookFormModel.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:API.FormModels.BookFormModel.Title">
+            <summary>
+            Title
+            </summary>
+        </member>
+        <member name="P:API.FormModels.BookFormModel.Description">
+            <summary>
+            Description
+            </summary>
+        </member>
+        <member name="P:API.FormModels.BookFormModel.Difficulty">
+            <summary>
+            Difficulty
+            </summary>
+        </member>
         <member name="T:API.Middleware.ErrorHandlingMiddleware">
             <summary>
             Class ErrorHandlingMiddleware.
@@ -262,6 +310,16 @@
             </summary>
             <param name="app">app</param>
             <param name="logger">logger</param>
+        </member>
+        <member name="T:API.ViewModels.BookViewModels">
+            <summary>
+            Class BookViewModels
+            </summary>
+        </member>
+        <member name="P:API.ViewModels.BookViewModels.Default">
+            <summary>
+            Method originates the output object
+            </summary>
         </member>
     </members>
 </doc>

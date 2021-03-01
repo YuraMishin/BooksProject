@@ -1,7 +1,10 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using API.FormModels;
+using API.ViewModels;
 using Application.Books;
+using Domain;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -57,16 +60,39 @@ namespace API.Controllers
       return Ok(await _mediator.Send(new Details.Query { Id = id }));
     }
 
-    /// <summary>
-    /// Method creates a book.
+    ///// <summary>
+    ///// Method creates a book.
+    ///// POST: /api/books/
+    ///// </summary>
+    ///// <param name="command">command</param>
+    ///// <returns>JSON</returns>
+    //[HttpPost]
+    //public async Task<IActionResult> Create([FromBody] Create.Command command)
+    //{
+    //  return Ok(await _mediator.Send(command));
+    //}
+
+
+    /// <summary> Method creates a book.
     /// POST: /api/books/
     /// </summary>
-    /// <param name="command">command</param>
+    /// <param name="bookForm">bookForm</param>
     /// <returns>JSON</returns>
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] Create.Command command)
+    public async Task<IActionResult> Create([FromBody] BookFormModel bookForm)
     {
-      return Ok(await _mediator.Send(command));
+      var book = new Book
+      {
+        Id = bookForm.Id,
+        Title = bookForm.Title,
+        Description = bookForm.Description,
+        DifficultyId = bookForm.Difficulty
+
+      };
+      await _context.AddAsync(book);
+      await _context.SaveChangesAsync();
+
+      return Ok(BookViewModels.Default.Compile().Invoke(book));
     }
 
     /// <summary>

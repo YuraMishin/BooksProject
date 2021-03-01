@@ -29,8 +29,7 @@ namespace Persistence.Seeders
                 {
                     new Book
                     {
-                        Title = "Book 1",
-                        Difficulty = diffDefaultName
+                        Title = "Book 1"
                     }
                 };
 

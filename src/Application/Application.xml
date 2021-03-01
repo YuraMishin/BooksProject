@@ -25,6 +25,16 @@
             Title
             </summary>
         </member>
+        <member name="P:Application.Books.Create.Command.Description">
+            <summary>
+            Description
+            </summary>
+        </member>
+        <member name="P:Application.Books.Create.Command.Difficulty">
+            <summary>
+            Difficulty
+            </summary>
+        </member>
         <member name="T:Application.Books.Create.CommandValidator">
             <summary>
             Class CommandValidator.
