@@ -10,6 +10,11 @@ namespace Domain
   public class Difficulty : BaseModel<Guid>
   {
     /// <summary>
+    /// Name
+    /// </summary>
+    public string Name { get; set; }
+
+    /// <summary>
     /// Description
     /// </summary>
     public string Description { get; set; }

@@ -36,6 +36,11 @@
             BookRelationships
             </summary>
         </member>
+        <member name="P:Persistence.DataContext.Categories">
+            <summary>
+            Categories
+            </summary>
+        </member>
         <member name="M:Persistence.DataContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <summary>
             Method finetunes DbContext via Fluent API
@@ -224,6 +229,52 @@
             <param name="migrationBuilder">migrationBuilder</param>
         </member>
         <member name="M:Persistence.Migrations.AddBookRelationshipsTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Method builds target model
+            </summary>
+            <param name="modelBuilder">modelBuilder</param>
+        </member>
+        <member name="T:Persistence.Migrations.AddCategoriesTable">
+            <summary>
+            AddCategoriesTable
+            </summary>
+        </member>
+        <member name="M:Persistence.Migrations.AddCategoriesTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method performs the migration
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:Persistence.Migrations.AddCategoriesTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method rollbacks the migration
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:Persistence.Migrations.AddCategoriesTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Method builds target model
+            </summary>
+            <param name="modelBuilder">modelBuilder</param>
+        </member>
+        <member name="T:Persistence.Migrations.AddBookCategoriesReference">
+            <summary>
+            Class AddBookCategoriesReference
+            </summary>
+        </member>
+        <member name="M:Persistence.Migrations.AddBookCategoriesReference.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method performs the migration
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:Persistence.Migrations.AddBookCategoriesReference.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method rollbacks the migration
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:Persistence.Migrations.AddBookCategoriesReference.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <summary>
             Method builds target model
             </summary>

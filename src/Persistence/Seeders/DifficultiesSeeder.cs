@@ -23,14 +23,17 @@ namespace Persistence.Seeders
                 {
                     new Difficulty
                     {
+                        Name = "Easy",
                         Description = "Easy"
                     },
                     new Difficulty
                     {
+                      Name = "Medium",
                       Description = "Medium"
                     },
                     new Difficulty
                     {
+                      Name = "Hard",
                       Description = "Hard"
                     }
                 };

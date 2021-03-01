@@ -30,13 +30,17 @@ namespace API
       try
       {
         var context = services.GetRequiredService<DataContext>();
+        var env = scope.ServiceProvider.GetRequiredService<IWebHostEnvironment>();
 
         // Creates DB if it doesn't exist
         await context.Database.MigrateAsync();
 
-        // Seeds data
-        await DifficultiesSeeder.SeedData(context);
-        //await BooksSeeder.SeedData(context);
+        if (env.IsDevelopment())
+        {
+          // Seeds data
+          await DifficultiesSeeder.SeedData(context);
+          //await BooksSeeder.SeedData(context);
+        }
       }
       catch (Exception ex)
       {
