@@ -1,6 +1,7 @@
 const initState = () => ({
   books: [],
-  difficulties: []
+  difficulties: [],
+  categories: [],
 })
 
 export const state = initState;
@@ -13,14 +14,19 @@ export const getters = {
   difficultyItems: state => state.difficulties.map(x => ({
     text: x.name,
     value: x.id
+  })),
+  categoryItems: state => state.categories.map(x => ({
+    text: x.name,
+    value: x.id
   }))
 }
 
 // sync
 export const mutations = {
-  setBooks(state, {books, difficulties}) {
+  setBooks(state, {books, difficulties, categories}) {
     state.books = books;
     state.difficulties = difficulties;
+    state.categories = categories;
   },
   reset(state) {
     Object.assign(state, initState());
@@ -41,10 +47,17 @@ export const actions = {
   async fetchBooks({commit}) {
     const books = (await this.$axios.$get('books/'));
     const difficulties = await this.$axios.$get("difficulties/");
-    commit('setBooks', {books, difficulties});
+    const categories = [
+      {id: "1", name: "cat1"},
+      {id: "2", name: "cat2"},
+      {id: "3", name: "cat3"},
+    ];
+
+    commit('setBooks', {books, difficulties, categories});
   },
   addBook({dispatch}, {form}) {
-    return this.$axios.$post('books/', form);
+    console.log(form);
+    // return this.$axios.$post('books/', form);
   },
   async addBook2(vuexContext, book) {
     return this.$axios

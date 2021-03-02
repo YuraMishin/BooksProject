@@ -12,11 +12,25 @@
       <v-stepper-content step="1">
         <div>
           <v-text-field label="Title" v-model="form.title"></v-text-field>
+
           <v-text-field label="Description" v-model="form.description"></v-text-field>
+
           <v-select
             :items="difficultyItems"
             v-model="form.difficulty"
             label="Difficulty"></v-select>
+
+          <v-select
+            :items="categoryItems"
+            v-model="form.categories"
+            label="Categories"
+            multiple
+            small-chips
+            chips
+            deletable-chips>
+
+          </v-select>
+
           <v-btn @click="step++">Next</v-btn>
         </div>
       </v-stepper-content>
@@ -39,6 +53,7 @@
       title: "",
       description: "",
       difficulty: "",
+      categories: [],
     }
   })
 
@@ -47,7 +62,10 @@
     data: initState,
     computed: {
       ...mapState('video-upload', ['active']),
-      ...mapGetters('books', ['difficultyItems']),
+      ...mapGetters('books', [
+        'difficultyItems',
+        'categoryItems'
+      ]),
     },
     watch: {
       'active': function (newValue) {
