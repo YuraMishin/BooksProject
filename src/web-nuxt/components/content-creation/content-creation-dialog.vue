@@ -34,13 +34,15 @@
   import BookSteps from "./book-steps";
   import SubmissionSteps from "./submission-steps";
   import DifficultyForm from "./difficulty-form";
+  import CategoryForm from "./category-form";
 
   export default {
     name: "content-creation-dialog",
     components: {
       SubmissionSteps,
       BookSteps,
-      DifficultyForm
+      DifficultyForm,
+      CategoryForm
     },
     computed: {
       ...mapState('video-upload', ['active', 'component']),
@@ -48,7 +50,8 @@
         return [
           {component: BookSteps, title: "Book"},
           {component: SubmissionSteps, title: "Submission"},
-          {component: DifficultyForm, title: "Difficulty"}
+          {component: DifficultyForm, title: "Difficulty"},
+          {component: CategoryForm, title: "Category"}
         ]
       }
     },
