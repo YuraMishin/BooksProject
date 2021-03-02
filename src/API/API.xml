@@ -93,6 +93,14 @@
             </summary>
             <returns>JSON</returns>
         </member>
+        <member name="M:API.Controllers.CategoriesController.Create(Domain.Category)">
+            <summary>
+            Method creates the category.
+            POST: /api/categories
+            </summary>
+            <param name="category">category</param>
+            <returns>JSON</returns>
+        </member>
         <member name="T:API.Controllers.DifficultiesController">
             <summary>
             Class DifficultiesController.

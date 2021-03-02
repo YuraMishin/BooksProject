@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -34,5 +35,19 @@ namespace API.Controllers
     /// <returns>JSON</returns>
     [HttpGet]
     public async Task<IActionResult> Index() => Ok(await _context.Categories.ToListAsync());
+
+    /// <summary>
+    /// Method creates the category.
+    /// POST: /api/categories
+    /// </summary>
+    /// <param name="category">category</param>
+    /// <returns>JSON</returns>
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] Category category)
+    {
+      await _context.AddAsync(category);
+      await _context.SaveChangesAsync();
+      return Ok(category);
+    }
   }
 }
