@@ -18,7 +18,9 @@
           <v-select
             :items="difficultyItems"
             v-model="form.difficulty"
-            label="Difficulty"></v-select>
+            label="Difficulty">
+
+          </v-select>
 
           <v-select
             :items="categoryItems"
@@ -28,7 +30,26 @@
             small-chips
             chips
             deletable-chips>
+          </v-select>
 
+          <v-select
+            :items="bookItems"
+            v-model="form.prerequisites"
+            label="Prerequisites"
+            multiple
+            small-chips
+            chips
+            deletable-chips>
+          </v-select>
+
+          <v-select
+            :items="bookItems"
+            v-model="form.progressions"
+            label="Progressions"
+            multiple
+            small-chips
+            chips
+            deletable-chips>
           </v-select>
 
           <v-btn @click="step++">Next</v-btn>
@@ -54,6 +75,8 @@
       description: "",
       difficulty: "",
       categories: [],
+      prerequisites: [],
+      progressions: []
     }
   })
 
@@ -64,7 +87,8 @@
       ...mapState('video-upload', ['active']),
       ...mapGetters('books', [
         'difficultyItems',
-        'categoryItems'
+        'categoryItems',
+        'bookItems'
       ]),
     },
     watch: {

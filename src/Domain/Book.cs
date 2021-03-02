@@ -25,6 +25,7 @@ namespace Domain
     /// DifficultyId
     /// </summary>
     public Guid DifficultyId { get; set; }
+
     /// <summary>
     /// Difficulty
     /// </summary>

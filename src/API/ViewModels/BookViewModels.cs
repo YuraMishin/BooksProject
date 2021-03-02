@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Linq.Expressions;
 using Domain;
 
@@ -18,7 +19,8 @@ namespace API.ViewModels
         book.Id,
         book.Title,
         book.Description,
-        book.DifficultyId
+        book.DifficultyId,
+        Categories = book.Categories.Select(x => x.Id)
       };
   }
 }

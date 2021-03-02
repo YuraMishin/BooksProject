@@ -22,7 +22,7 @@
             <param name="mediator">mediator</param>
             <param name="context">context</param>
         </member>
-        <member name="M:API.Controllers.BooksController.List">
+        <member name="M:API.Controllers.BooksController.Index">
             <summary>
             Method retrieves all the books.
             GET: /api/books

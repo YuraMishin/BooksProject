@@ -38,15 +38,31 @@ namespace API.Controllers
       _context = context;
     }
 
+    ///// <summary>
+    ///// Method retrieves all the books.
+    ///// GET: /api/books
+    ///// </summary>
+    ///// <returns>JSON</returns>
+    //[HttpGet]
+    //public async Task<IActionResult> List()
+    //{
+    //  var result = await _mediator.Send(new List.Query());
+
+    //  return Ok(result.Select(book => BookViewModels.Default.Compile().Invoke(book)).ToList());
+    //}
+
     /// <summary>
     /// Method retrieves all the books.
     /// GET: /api/books
     /// </summary>
     /// <returns>JSON</returns>
     [HttpGet]
-    public async Task<IActionResult> List() => Ok(
-      await _mediator.Send(new List.Query())
-      );
+    public async Task<IActionResult> Index()
+    {
+      var result = await _context.Books.Select(BookViewModels.Default).ToListAsync();
+
+      return Ok(result);
+    }
 
     /// <summary>
     /// Method retrieves the specific book.
