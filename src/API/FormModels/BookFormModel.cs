@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace API.FormModels
 {
@@ -26,5 +27,10 @@ namespace API.FormModels
     /// Difficulty
     /// </summary>
     public Guid Difficulty { get; set; }
+
+    /// <summary>
+    /// Categories
+    /// </summary>
+    public IEnumerable<Guid> Categories { get; set; }
   }
 }

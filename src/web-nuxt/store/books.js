@@ -52,8 +52,7 @@ export const actions = {
     commit('setBooks', {books, difficulties, categories});
   },
   addBook({dispatch}, {form}) {
-    console.log(form);
-    // return this.$axios.$post('books/', form);
+    return this.$axios.$post('books/', form);
   },
   async addBook2(vuexContext, book) {
     return this.$axios

@@ -1,5 +1,5 @@
 ﻿<template>
-  <v-dialog :value="active" persistent>
+  <v-dialog :value="active" persistent width="700">
     <template v-slot:activator="{on}">
       <v-menu offset-y>
         <template v-slot:activator="{ on, attrs }">

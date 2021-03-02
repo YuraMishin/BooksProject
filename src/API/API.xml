@@ -248,6 +248,11 @@
             Difficulty
             </summary>
         </member>
+        <member name="P:API.FormModels.BookFormModel.Categories">
+            <summary>
+            Categories
+            </summary>
+        </member>
         <member name="T:API.Middleware.ErrorHandlingMiddleware">
             <summary>
             Class ErrorHandlingMiddleware.

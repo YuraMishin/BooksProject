@@ -86,9 +86,12 @@ namespace API.Controllers
         Id = bookForm.Id,
         Title = bookForm.Title,
         Description = bookForm.Description,
-        DifficultyId = bookForm.Difficulty
-
+        DifficultyId = bookForm.Difficulty,
+        Categories = bookForm.Categories
+          .Select(guid => _context.Categories.Find(guid))
+          .ToList()
       };
+
       await _context.AddAsync(book);
       await _context.SaveChangesAsync();
 
