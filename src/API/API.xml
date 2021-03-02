@@ -93,6 +93,14 @@
             </summary>
             <returns>JSON</returns>
         </member>
+        <member name="M:API.Controllers.DifficultiesController.Create(Domain.Difficulty)">
+            <summary>
+            Method creates the difficulty.
+            POST: /api/difficulties
+            </summary>
+            <param name="difficulty">difficulty</param>
+            <returns>JSON</returns>
+        </member>
         <member name="T:API.Controllers.SubmissionsController">
             <summary>
             Class BooksController.

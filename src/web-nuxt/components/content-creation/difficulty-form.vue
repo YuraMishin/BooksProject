@@ -24,7 +24,7 @@
     data: initState,
     methods: {
       save() {
-        console.log(this.form);
+        this.$axios.post("difficulties/", this.form);
       }
     }
   }
