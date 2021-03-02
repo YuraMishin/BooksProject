@@ -33,16 +33,22 @@
   import {mapState, mapMutations} from 'vuex';
   import BookSteps from "./book-steps";
   import SubmissionSteps from "./submission-steps";
+  import DifficultyForm from "./difficulty-form";
 
   export default {
     name: "content-creation-dialog",
-    components: {SubmissionSteps, BookSteps},
+    components: {
+      SubmissionSteps,
+      BookSteps,
+      DifficultyForm
+    },
     computed: {
       ...mapState('video-upload', ['active', 'component']),
       menuItems() {
         return [
           {component: BookSteps, title: "Book"},
           {component: SubmissionSteps, title: "Submission"},
+          {component: DifficultyForm, title: "Difficulty"}
         ]
       }
     },
