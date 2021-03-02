@@ -69,6 +69,30 @@
             <param name="bookId"></param>
             <returns></returns>
         </member>
+        <member name="T:API.Controllers.CategoriesController">
+            <summary>
+            Class CategoriesController.
+            Implements Categories API
+            </summary>
+        </member>
+        <member name="F:API.Controllers.CategoriesController._context">
+            <summary>
+            DataContext
+            </summary>
+        </member>
+        <member name="M:API.Controllers.CategoriesController.#ctor(Persistence.DataContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="context">context</param>
+        </member>
+        <member name="M:API.Controllers.CategoriesController.Index">
+            <summary>
+            Method retrieves all the categories.
+            GET: /api/categories
+            </summary>
+            <returns>JSON</returns>
+        </member>
         <member name="T:API.Controllers.DifficultiesController">
             <summary>
             Class DifficultiesController.

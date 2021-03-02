@@ -47,11 +47,7 @@ export const actions = {
   async fetchBooks({commit}) {
     const books = (await this.$axios.$get('books/'));
     const difficulties = await this.$axios.$get("difficulties/");
-    const categories = [
-      {id: "1", name: "cat1"},
-      {id: "2", name: "cat2"},
-      {id: "3", name: "cat3"},
-    ];
+    const categories = await this.$axios.$get("categories/");
 
     commit('setBooks', {books, difficulties, categories});
   },
