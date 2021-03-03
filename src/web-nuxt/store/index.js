@@ -7,8 +7,8 @@ export const mutations = {}
 
 // async
 export const actions = {
-  async nuxtServerInit({dispatch}) {
-    await dispatch("books/fetchBooks");
+  nuxtServerInit({dispatch}) {
+    return dispatch("books/fetchBooks");
     // await dispatch("submissions/fetchSubmissions")
   }
 }

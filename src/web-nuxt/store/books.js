@@ -18,7 +18,8 @@ export const getters = {
   categoryItems: state => state.categories.map(x => ({
     text: x.name,
     value: x.id
-  }))
+  })),
+  bookById: state => id => state.books.find(x => x.id === id)
 }
 
 // sync

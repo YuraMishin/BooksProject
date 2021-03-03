@@ -18,12 +18,7 @@
   export default {
     name: "index",
     layout: 'index2Layout',
-    computed: {
-      ...mapState('books', ['books'])
-    },
-    async fetch() {
-      await this.$store.dispatch("books/fetchBooks", null, {root: true});
-    }
+    computed: mapState('books', ['books'])
   }
 </script>
 
