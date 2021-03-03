@@ -20,7 +20,9 @@ namespace API.ViewModels
         book.Title,
         book.Description,
         book.DifficultyId,
-        Categories = book.Categories.Select(x => x.Id)
+        Categories = book.Categories.Select(x => x.Id),
+        Prerequisites = book.Prerequisites.Select(x => x.PrerequisiteId),
+        Progressions = book.Progressions.Select(x => x.ProgressionId)
       };
   }
 }

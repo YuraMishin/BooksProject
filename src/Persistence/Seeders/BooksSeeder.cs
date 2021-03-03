@@ -20,21 +20,45 @@ namespace Persistence.Seeders
     {
       if (!context.Books.Any())
       {
-        var diffDefaultName = context
+        var easyId = context
           .Difficulties
           .SingleOrDefaultAsync(difficulty =>
            difficulty.Description == "Easy")
-          .Result;
+          .Result.Id;
         var books = new List<Book>
                 {
-                    new Book
+                   new Book
                     {
-                        Title = "Book 1"
+                      Title = "Book Previous",
+                      Description = "Description",
+                      DifficultyId = easyId,
+                      Categories = context.Categories.ToList()
                     }
                 };
 
         await context.Books.AddRangeAsync(books);
         await context.SaveChangesAsync();
+
+        await context.Books.AddAsync(new Book
+        {
+          Title = "Book Current",
+          Description = "Description",
+          DifficultyId = easyId,
+          Categories = context.Categories.ToList(),
+          Prerequisites = new List<BookRelationship>
+          {
+            new BookRelationship
+            {
+              PrerequisiteId = context
+                .Books
+                .Where(book => book.Title == "Book Previous")
+                .FirstOrDefault()
+                .Id
+            }
+          }
+        });
+        await context.SaveChangesAsync();
+
       }
     }
   }
