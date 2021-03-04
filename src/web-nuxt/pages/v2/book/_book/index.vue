@@ -10,8 +10,7 @@
       </div>
     </div>
 
-    <div class="mx-2 sticky">
-      <v-sheet class="pa-3 mt-2">
+      <v-sheet class="pa-3 ma-2 sticky">
         <div class="text-h6">{{ book.title }}</div>
         <v-divider class="my-1"></v-divider>
 
@@ -29,7 +28,6 @@
           </v-chip-group>
         </div>
       </v-sheet>
-    </div>
   </div>
 </template>
 
@@ -52,19 +50,19 @@
             title: "Categories",
             data: this.categories.filter(x => this.book.categories.indexOf(x.id) >= 0),
             idFactory: c => `category-${c.title}`,
-            routeFactory: c => `/`,
+            routeFactory: c => `/v2/category/${c.id}`,
           },
           {
             title: "Prerequisites",
             data: this.books.filter(x => this.book.prerequisites.indexOf(x.id) >= 0),
             idFactory: t => `book-${t.title}`,
-            routeFactory: t => `/v2/books/${t.id}`,
+            routeFactory: t => `/v2/book/${t.id}`,
           },
           {
             title: "Progressions",
             data: this.books.filter(x => this.book.progressions.indexOf(x.id) >= 0),
             idFactory: t => `book-${t.title}`,
-            routeFactory: t => `/v2/books/${t.id}`,
+            routeFactory: t => `/v2/book/${t.id}`,
           },
         ]
       },
@@ -88,9 +86,5 @@
 </script>
 
 <style scoped>
-  .sticky {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 48px;
-  }
+
 </style>

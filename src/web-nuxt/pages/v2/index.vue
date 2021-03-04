@@ -6,7 +6,7 @@
         style="margin: 10px"
         v-for="b in books"
       >
-        <v-btn :to="`/v2/books/${b.id}`">{{b.title}}</v-btn>
+        <v-btn :to="`/v2/book/${b.id}`">{{b.title}}</v-btn>
       </div>
     </div>
   </div>

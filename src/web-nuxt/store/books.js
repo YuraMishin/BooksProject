@@ -19,7 +19,8 @@ export const getters = {
     text: x.name,
     value: x.id
   })),
-  bookById: state => id => state.books.find(x => x.id === id)
+  bookById: state => id => state.books.find(x => x.id === id),
+  categoryById: state => id => state.categories.find(x => x.id === id)
 }
 
 // sync

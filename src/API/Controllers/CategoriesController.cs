@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
@@ -48,6 +50,25 @@ namespace API.Controllers
       await _context.AddAsync(category);
       await _context.SaveChangesAsync();
       return Ok(category);
+    }
+
+    /// <summary>
+    /// Method retrieves all the books for the specific category.
+    /// GET: /api/categories/{id}/books
+    /// </summary>
+    /// <param name="id">id</param>
+    /// <returns>JSON</returns>
+    [HttpGet("{id}/books")]
+    public async Task<IActionResult> ListCategoryBooks(Guid id)
+    {
+      var books = _context
+        .Categories
+        .Where(category => category.Id.Equals(id))
+        .Include(category => category.Books)
+        .Select(category => category.Books).First()
+        .ToList();
+
+      return Ok(books);
     }
   }
 }

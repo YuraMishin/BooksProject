@@ -101,6 +101,14 @@
             <param name="category">category</param>
             <returns>JSON</returns>
         </member>
+        <member name="M:API.Controllers.CategoriesController.ListCategoryBooks(System.Guid)">
+            <summary>
+            Method retrieves all the books for the specific category.
+            GET: /api/categories/{id}/books
+            </summary>
+            <param name="id">id</param>
+            <returns>JSON</returns>
+        </member>
         <member name="T:API.Controllers.DifficultiesController">
             <summary>
             Class DifficultiesController.
