@@ -1,11 +1,13 @@
 <template>
   <v-app>
     <v-app-bar app dense>
-      <v-toolbar-title
-        style="cursor: pointer"
-        @click="$router.push('/v2/')">
+      <nuxt-link
+        class="text-h5 text--primary"
+        style="text-decoration: none"
+        to="/v2/"
+      >
         Books Project
-      </v-toolbar-title>
+      </nuxt-link>
         <v-spacer></v-spacer>
 
         <content-creation-dialog></content-creation-dialog>
