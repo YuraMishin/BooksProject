@@ -10,24 +10,32 @@
       </div>
     </div>
 
-      <v-sheet class="pa-3 ma-2 sticky">
-        <div class="text-h6">{{ book.title }}</div>
-        <v-divider class="my-1"></v-divider>
+    <v-sheet class="pa-3 ma-2 sticky">
+      <div class="text-h5">
+        <span>{{ book.title }}</span>
+        <v-chip
+          class="mb-1 ml-2"
+          small
+          :to="`/v2/difficulty/${difficulty.id}`">
+          {{ difficulty.name }} Difficulty
+        </v-chip>
+      </div>
+      <v-divider class="my-1"></v-divider>
 
-        <div class="text-body-2">{{ book.description }}</div>
-        <div class="text-body-2">{{ book.difficultyId }}</div>
-        <v-divider class="my-1"></v-divider>
+      <div class="text-body-2">{{ book.description }}</div>
 
-        <div v-for="rd in relatedData" v-if="rd.data.length > 0">
-          <div class="text-subtitle-1">{{rd.title}}</div>
-          <v-chip-group>
-            <v-chip v-for="(d, index) in rd.data" :key="index" small
-                    :to="rd.routeFactory(d)">
-              {{d.title ? d.title : d.name}}
-            </v-chip>
-          </v-chip-group>
-        </div>
-      </v-sheet>
+      <v-divider class="my-1"></v-divider>
+
+      <div v-for="rd in relatedData" v-if="rd.data.length > 0">
+        <div class="text-subtitle-1">{{rd.title}}</div>
+        <v-chip-group>
+          <v-chip v-for="(d, index) in rd.data" :key="index" small
+                  :to="rd.routeFactory(d)">
+            {{d.title ? d.title : d.name}}
+          </v-chip>
+        </v-chip-group>
+      </div>
+    </v-sheet>
   </div>
 </template>
 
@@ -37,13 +45,14 @@
   export default {
     name: "index",
     layout: 'index2Layout',
+    data: () => ({
+      book: null,
+      difficulty: null
+    }),
     computed: {
       ...mapState('submissions', ['submissions']),
       ...mapState('books', ['categories', 'books']),
-      ...mapGetters('books', ['bookById']),
-      book() {
-        return this.bookById(this.$route.params.book)
-      },
+      ...mapGetters('books', ['bookById', 'difficultyById']),
       relatedData() {
         return [
           {
@@ -69,12 +78,16 @@
     },
     async fetch() {
       const bookId = this.$route.params.book;
+      this.book = this.bookById(bookId);
+      this.difficulty = this.difficultyById(this.book.difficultyId)
       await this.$store.dispatch("submissions/fetchSubmissionsForBook", {bookId}, {
         root:
           true
       })
     },
     head() {
+      if (!this.book) return {};
+
       return {
         title: this.book.title,
         meta: [

@@ -141,6 +141,14 @@
             <param name="difficulty">difficulty</param>
             <returns>JSON</returns>
         </member>
+        <member name="M:API.Controllers.DifficultiesController.ListDifficultyBooks(System.Guid)">
+            <summary>
+            Method retrieves all the books for the specific difficulty.
+            GET: /api/difficulties/{id}/books
+            </summary>
+            <param name="id">id</param>
+            <returns>JSON</returns>
+        </member>
         <member name="T:API.Controllers.SubmissionsController">
             <summary>
             Class BooksController.

@@ -1,18 +1,6 @@
 ﻿<template>
   <div class="d-flex mt-3 justify-center align-start">
-    <div class="mx-2">
-      <v-text-field
-        label="Search"
-        placeholder="e.g. space"
-        v-model="filter"
-        prepend-inner-icon="mdi-magnify"
-        outlined>
-      </v-text-field>
-
-      <div v-for="b in filteredBooks">
-        {{b.title}} - {{b.description}}
-      </div>
-    </div>
+    <book-list :books="books" class="mx-2"/>
 
     <v-sheet class="pa-3 mx-2 sticky" v-if="category">
       <div class="text-h6">{{ category.name }}</div>
@@ -23,27 +11,17 @@
 </template>
 
 <script>
-  import {mapGetters} from 'vuex'
+  import {mapGetters} from 'vuex';
+  import BookList from "../../../components/book-list-v2";
 
   export default {
     layout: 'index2Layout',
+    components: {BookList},
     data: () => ({
       category: null,
-      books: [],
-      filter: "",
+      books: []
     }),
-    computed: {
-      ...mapGetters('books', ['categoryById']),
-      filteredBooks() {
-        if (!this.filter) return this.books;
-
-        const normalize = this.filter.trim().toLowerCase();
-        return this.books.filter(
-          book =>
-            book.title.toLowerCase().includes(normalize)
-            || book.description.toLowerCase().includes(normalize));
-      }
-    },
+    computed: mapGetters('books', ['categoryById']),
     async fetch() {
       const categoryId = this.$route.params.category;
       this.category = this.categoryById(categoryId);

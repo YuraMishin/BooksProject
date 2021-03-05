@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
@@ -48,6 +50,26 @@ namespace API.Controllers
       await _context.Difficulties.AddAsync(difficulty);
       await _context.SaveChangesAsync();
       return Ok(difficulty);
+    }
+
+    /// <summary>
+    /// Method retrieves all the books for the specific difficulty.
+    /// GET: /api/difficulties/{id}/books
+    /// </summary>
+    /// <param name="id">id</param>
+    /// <returns>JSON</returns>
+    [HttpGet("{id}/books")]
+    public async Task<IActionResult> ListDifficultyBooks(Guid id)
+    {
+      var books = await _context
+        .Difficulties
+        .Where(difficulty => difficulty.Id.Equals(id))
+        .Include(difficulty => difficulty.Books)
+        .Select(difficulty => difficulty.Books)
+        .FirstAsync();
+
+
+      return Ok(books);
     }
 
   }

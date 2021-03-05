@@ -4,8 +4,12 @@
       <h1>Books Project</h1>
     </section>
     <p>{{new Date().toISOString() | date}}</p>
-    <p><nuxt-link to="/fileupload">File Upload</nuxt-link></p>
-    <p><nuxt-link to="/v2/">Books v2</nuxt-link></p>
+    <p>
+      <nuxt-link to="/fileupload">File Upload</nuxt-link>
+    </p>
+    <p>
+      <nuxt-link to="/v2/">Books v2</nuxt-link>
+    </p>
     <BookList v-if="books"
               :books="books"/>
   </div>
