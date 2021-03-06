@@ -1,22 +1,30 @@
 ﻿<template>
-  <div class="d-flex mt-3 justify-center align-start">
-    <book-list :books="books" class="mx-2" />
+  <item-content-layout>
+    <template v-slot:content>
+      <book-list :books="books"/>
+    </template>
+    <template v-slot:item>
+      <div v-if="difficulty">
+        <div class="text-h6">{{ difficulty.name }}</div>
+        <v-divider class="my-1"></v-divider>
+        <div class="text-body-2">{{ difficulty.description }}</div>
+      </div>
+    </template>
+  </item-content-layout>
 
-    <v-sheet class="pa-3 mx-2 sticky" v-if="difficulty">
-      <div class="text-h6">{{ difficulty.name }}</div>
-      <v-divider class="my-1"></v-divider>
-      <div class="text-body-2">{{ difficulty.description }}</div>
-    </v-sheet>
-  </div>
 </template>
 
 <script>
   import {mapGetters} from 'vuex'
   import BookList from "../../../components/book-list-v2";
+  import ItemContentLayout from "../../../components/v2/item-content-layout";
 
   export default {
     layout: 'index2Layout',
-    components: {BookList},
+    components: {
+      BookList,
+      ItemContentLayout
+    },
     data: () => ({
       difficulty: null,
       books: [],

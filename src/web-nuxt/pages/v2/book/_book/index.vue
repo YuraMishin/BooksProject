@@ -1,39 +1,25 @@
 <template>
-  <div class="d-flex mt-3 justify-center align-start">
-    <div class="mx-3" v-if="submissions">
-      <div v-for="x in 10">
-        <div
-          class="mb-3"
-          v-for="(s, index) in submissions">
-          <v-card
-            class="mb-3"
-            v-for="(s, index) in submissions" :key="index">
-            <video-player
-              :video="s.video"
-              :key="index"
-            />
+  <item-content-layout>
+    <template v-slot:content>
+      <div v-if="submissions">
+        <div v-for="(x, index) in 10">
+          <v-card class="mb-3" v-for="s in submissions" :key="index">
+            <video-player :video="s.video" :key="index"/>
             <v-card-text>{{s.description}}</v-card-text>
           </v-card>
         </div>
       </div>
-    </div>
-
-    <v-sheet class="pa-3 sticky">
+    </template>
+    <template v-slot:item>
       <div class="text-h5">
         <span>{{ book.title }}</span>
-        <v-chip
-          class="mb-1 ml-2"
-          small
-          :to="`/v2/difficulty/${difficulty.id}`">
+        <v-chip class="mb-1 ml-2" small :to="`/difficulty/${difficulty.id}`">
           {{ difficulty.name }}
         </v-chip>
       </div>
       <v-divider class="my-1"></v-divider>
-
       <div class="text-body-2">{{ book.description }}</div>
-
       <v-divider class="my-1"></v-divider>
-
       <div v-for="rd in relatedData" v-if="rd.data.length > 0">
         <div class="text-subtitle-1">{{rd.title}}</div>
         <v-chip-group>
@@ -43,18 +29,22 @@
           </v-chip>
         </v-chip-group>
       </div>
-    </v-sheet>
-  </div>
+    </template>
+  </item-content-layout>
 </template>
 
 <script>
   import {mapState, mapGetters} from 'vuex';
   import VideoPlayer from "../../../../components/v2/video-player";
+  import ItemContentLayout from "../../../../components/v2/item-content-layout";
 
   export default {
     name: "index",
     layout: 'index2Layout',
-    components: {VideoPlayer},
+    components: {
+      VideoPlayer,
+      ItemContentLayout
+    },
     data: () => ({
       book: null,
       difficulty: null
