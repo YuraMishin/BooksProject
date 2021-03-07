@@ -2,12 +2,12 @@
   <item-content-layout>
     <template v-slot:content>
       <div v-if="submissions">
-        <div v-for="(x, index) in 10">
-          <v-card class="mb-3" v-for="s in submissions" :key="index">
+
+          <v-card class="mb-3" v-for="(s, index) in submissions" :key="index">
             <video-player :video="s.video" :key="index"/>
             <v-card-text>{{s.description}}</v-card-text>
           </v-card>
-        </div>
+
       </div>
     </template>
     <template v-slot:item>

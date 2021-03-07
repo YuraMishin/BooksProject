@@ -445,3 +445,4 @@ $RECYCLE.BIN/
 /src/web-nuxt/package-lock.json
 /src/web-next/package-lock.json
 *.mp4
+*.exe
