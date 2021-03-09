@@ -4,7 +4,7 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - Books Project',
-    title: '',
+    title: 'Welcome',
     htmlAttrs: {
       lang: 'en'
     },
