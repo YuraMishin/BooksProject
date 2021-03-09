@@ -1,5 +1,5 @@
 using System.Threading.Channels;
-using API.BackgroundServices;
+using API.BackgroundServices.VideoEditing;
 using Application.Books;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -46,6 +46,7 @@ namespace API.Extensions
       //video conversion
       services.AddHostedService<VideoEditingBackgroundService>();
       services.AddSingleton(_ => Channel.CreateUnbounded<EditVideoMessage>());
+      services.AddSingleton<VideoManager>();
 
       //CORS for Frontend frameworks
       services.AddCors(opt =>

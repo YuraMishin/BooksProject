@@ -64,15 +64,7 @@
     name: "submission-steps",
     data: initState,
     computed: {
-      ...mapGetters('books', ['bookItems']),
-      ...mapState('video-upload', ['active']),
-    },
-    watch: {
-      'active': function (newValue) {
-        if (!newValue) {
-          Object.assign(this.$data, initState())
-        }
-      }
+      ...mapGetters('books', ['bookItems'])
     },
     methods: {
       ...mapMutations('video-upload', ['hide']),

@@ -11,42 +11,30 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Persistence;
 
-namespace API.BackgroundServices
+namespace API.BackgroundServices.VideoEditing
 {
-  /// <summary>
-  /// Class VideoEditingBackgroundService
-  /// </summary>
   public class VideoEditingBackgroundService : BackgroundService
   {
     private readonly IWebHostEnvironment _env;
     private readonly ILogger<VideoEditingBackgroundService> _logger;
     private readonly IServiceProvider _serviceProvider;
+    private readonly VideoManager _videoManager;
     private readonly ChannelReader<EditVideoMessage> _channelReader;
 
-    /// <summary>
-    /// Constructor
-    /// </summary>
-    /// <param name="env">env</param>
-    /// <param name="channel">channel</param>
-    /// <param name="logger">logger</param>
-    /// <param name="serviceProvider">serviceProvider</param>
     public VideoEditingBackgroundService(
         IWebHostEnvironment env,
         Channel<EditVideoMessage> channel,
         ILogger<VideoEditingBackgroundService> logger,
-        IServiceProvider serviceProvider)
+        IServiceProvider serviceProvider,
+        VideoManager videoManager)
     {
       _env = env;
       _logger = logger;
       _serviceProvider = serviceProvider;
+      _videoManager = videoManager;
       _channelReader = channel.Reader;
     }
 
-    /// <summary>
-    /// Method executes video conversion
-    /// </summary>
-    /// <param name="stoppingToken">stoppingToken</param>
-    /// <returns></returns>
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
       while (await _channelReader.WaitToReadAsync(stoppingToken))
@@ -54,14 +42,14 @@ namespace API.BackgroundServices
         var message = await _channelReader.ReadAsync(stoppingToken);
         try
         {
-          var inputPath = Path.Combine(_env.WebRootPath, message.Input);
-          var outputName = $"c{DateTime.Now.Ticks}.mp4";
-          var outputPath = Path.Combine(_env.WebRootPath, outputName);
+          var inputPath = _videoManager.TemporarySavePath(message.Input);
+          var outputName = _videoManager.GenerateConvertedFileName();
+          var outputPath = _videoManager.TemporarySavePath(outputName);
           var startInfo = new ProcessStartInfo
           {
             FileName = Path.Combine(_env.ContentRootPath, "ffmpeg", "ffmpeg.exe"),
             Arguments = $"-y -i {inputPath} -an -vf scale=100x100 {outputPath}",
-            WorkingDirectory = _env.WebRootPath,
+            WorkingDirectory = _videoManager.WorkingDirectory,
             CreateNoWindow = true,
             UseShellExecute = false,
           };
@@ -70,6 +58,11 @@ namespace API.BackgroundServices
           {
             process.Start();
             process.WaitForExit();
+          }
+
+          if (!_videoManager.TemporaryVideoExists(outputName))
+          {
+            throw new Exception("FFMPEG failed to generate converted video");
           }
 
           using (var scope = _serviceProvider.CreateScope())
@@ -87,6 +80,10 @@ namespace API.BackgroundServices
         catch (Exception e)
         {
           _logger.LogError(e, "Video Processing Failed for {0}", message.Input);
+        }
+        finally
+        {
+          _videoManager.DeleteTemporaryVideo(message.Input);
         }
       }
     }

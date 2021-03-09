@@ -84,19 +84,11 @@
     name: "book-steps",
     data: initState,
     computed: {
-      ...mapState('video-upload', ['active']),
       ...mapGetters('books', [
         'difficultyItems',
         'categoryItems',
         'bookItems'
       ]),
-    },
-    watch: {
-      'active': function (newValue) {
-        if (!newValue) {
-          Object.assign(this.$data, initState())
-        }
-      }
     },
     methods: {
       ...mapMutations('video-upload', ['reset']),

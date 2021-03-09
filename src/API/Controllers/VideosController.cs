@@ -1,8 +1,6 @@
-using System;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
+using API.BackgroundServices.VideoEditing;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,15 +13,15 @@ namespace API.Controllers
   [Route("api/[controller]")]
   public class VideosController : ControllerBase
   {
-    private readonly IWebHostEnvironment _env;
+    private readonly VideoManager _videoManager;
 
     /// <summary>
     /// Constructor
     /// </summary>
     /// <param name="env">env</param>
-    public VideosController(IWebHostEnvironment env)
+    public VideosController(VideoManager videoManager)
     {
-      _env = env;
+      _videoManager = videoManager;
     }
 
     /// <summary>
@@ -33,16 +31,9 @@ namespace API.Controllers
     /// <param name="video"></param>
     /// <returns></returns>
     [HttpPost]
-    public async Task<IActionResult> UploadVideo(IFormFile video)
+    public Task<string> UploadVideo(IFormFile video)
     {
-      var mime = video.FileName.Split('.').Last();
-      var fileName = string.Concat($"temp_{DateTime.Now.Ticks}", ".", mime);
-      var savePath = Path.Combine(_env.WebRootPath, fileName);
-      await using var fileStream =
-        new FileStream(savePath, FileMode.Create, FileAccess.Write);
-      await video.CopyToAsync(fileStream);
-
-      return Ok(fileName);
+      return _videoManager.SaveTemporaryVideo(video);
     }
 
     /// <summary>
@@ -54,9 +45,32 @@ namespace API.Controllers
     [HttpGet("{video}")]
     public IActionResult GetVideo(string video)
     {
-      var mime = video.Split('.').Last();
-      var savePath = Path.Combine(_env.WebRootPath, video);
+      var savePath = _videoManager.DevVideoPath(video);
+      if (string.IsNullOrEmpty(savePath))
+      {
+        return BadRequest();
+      }
+
       return new FileStreamResult(new FileStream(savePath, FileMode.Open, FileAccess.Read), "video/*");
+    }
+
+
+    [HttpDelete("{fileName}")]
+    public IActionResult DeleteTemporaryVideo(string fileName)
+    {
+      if (!_videoManager.Temporary(fileName))
+      {
+        return BadRequest();
+      }
+
+      if (!_videoManager.TemporaryVideoExists(fileName))
+      {
+        return NoContent();
+      }
+
+      _videoManager.DeleteTemporaryVideo(fileName);
+
+      return Ok();
     }
   }
 }

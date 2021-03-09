@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Channels;
 using System.Threading.Tasks;
-using API.BackgroundServices;
+using API.BackgroundServices.VideoEditing;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
 using Persistence;
@@ -60,10 +60,16 @@ namespace API.Controllers
     /// <param name="channel">channel</param>
     /// <returns>JSON</returns>
     [HttpPost]
-    public async Task<Submission> Create(
+    public async Task<IActionResult> Create(
       [FromBody] Submission submission,
-      [FromServices] Channel<EditVideoMessage> channel)
+      [FromServices] Channel<EditVideoMessage> channel,
+      [FromServices] VideoManager videoManager)
     {
+      if (!videoManager.TemporaryVideoExists(submission.Video))
+      {
+        return BadRequest();
+      }
+
       submission.VideoProcessed = false;
       _ctx.Add(submission);
       await _ctx.SaveChangesAsync();
@@ -72,7 +78,7 @@ namespace API.Controllers
         SubmissionId = submission.Id,
         Input = submission.Video,
       });
-      return submission;
+      return Ok(submission);
     }
 
     /// <summary>
