@@ -4,6 +4,42 @@
         <name>API</name>
     </assembly>
     <members>
+        <member name="T:API.BackgroundServices.EditVideoMessage">
+            <summary>
+            Class EditVideoMessage
+            </summary>
+        </member>
+        <member name="P:API.BackgroundServices.EditVideoMessage.SubmissionId">
+            <summary>
+            SubmissionId
+            </summary>
+        </member>
+        <member name="P:API.BackgroundServices.EditVideoMessage.Input">
+            <summary>
+            Input
+            </summary>
+        </member>
+        <member name="T:API.BackgroundServices.VideoEditingBackgroundService">
+            <summary>
+            Class VideoEditingBackgroundService
+            </summary>
+        </member>
+        <member name="M:API.BackgroundServices.VideoEditingBackgroundService.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment,System.Threading.Channels.Channel{API.BackgroundServices.EditVideoMessage},Microsoft.Extensions.Logging.ILogger{API.BackgroundServices.VideoEditingBackgroundService},System.IServiceProvider)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="env">env</param>
+            <param name="channel">channel</param>
+            <param name="logger">logger</param>
+            <param name="serviceProvider">serviceProvider</param>
+        </member>
+        <member name="M:API.BackgroundServices.VideoEditingBackgroundService.ExecuteAsync(System.Threading.CancellationToken)">
+            <summary>
+            Method executes video conversion
+            </summary>
+            <param name="stoppingToken">stoppingToken</param>
+            <returns></returns>
+        </member>
         <member name="T:API.Controllers.BooksController">
             <summary>
             Class BooksController.
@@ -181,12 +217,13 @@
             <param name="id">id</param>
             <returns>JSON</returns>
         </member>
-        <member name="M:API.Controllers.SubmissionsController.Create(Domain.Submission)">
+        <member name="M:API.Controllers.SubmissionsController.Create(Domain.Submission,System.Threading.Channels.Channel{API.BackgroundServices.EditVideoMessage})">
             <summary>
             Method creates a submission.
             POST: /api/submissions
             </summary>
             <param name="submission">submission</param>
+            <param name="channel">channel</param>
             <returns>JSON</returns>
         </member>
         <member name="M:API.Controllers.SubmissionsController.Update(Domain.Submission)">

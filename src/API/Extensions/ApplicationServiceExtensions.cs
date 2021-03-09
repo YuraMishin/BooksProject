@@ -1,3 +1,5 @@
+using System.Threading.Channels;
+using API.BackgroundServices;
 using Application.Books;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -41,6 +43,10 @@ namespace API.Extensions
             configuration.GetConnectionString("BooksProject"));
         });
 
+      //video conversion
+      services.AddHostedService<VideoEditingBackgroundService>();
+      services.AddSingleton(_ => Channel.CreateUnbounded<EditVideoMessage>());
+
       //CORS for Frontend frameworks
       services.AddCors(opt =>
       {
@@ -50,7 +56,6 @@ namespace API.Extensions
             .WithOrigins("http://localhost:3000");
         });
       });
-
 
       // Adds Mediatr
       services.AddMediatR(typeof(List.Handler).Assembly);

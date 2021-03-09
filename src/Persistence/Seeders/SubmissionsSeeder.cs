@@ -24,7 +24,8 @@ namespace Persistence.Seeders
         {
           BookId = bookId,
           Description = "Description",
-          Video = "default.mp4"
+          Video = "default.mp4",
+          VideoProcessed = true
         };
 
         await context.Submissions.AddAsync(submission);

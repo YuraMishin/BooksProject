@@ -120,6 +120,9 @@ namespace Persistence.Migrations
                     b.Property<string>("Video")
                         .HasColumnType("text");
 
+                    b.Property<bool>("VideoProcessed")
+                        .HasColumnType("boolean");
+
                     b.HasKey("Id");
 
                     b.ToTable("Submissions");

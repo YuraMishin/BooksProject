@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Channels;
 using System.Threading.Tasks;
+using API.BackgroundServices;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
 using Persistence;
@@ -36,7 +38,10 @@ namespace API.Controllers
     /// </summary>
     /// <returns>JSON</returns>
     [HttpGet]
-    public IEnumerable<Submission> All() => _ctx.Submissions.ToList();
+    public IEnumerable<Submission> All() => _ctx
+      .Submissions
+      .Where(x => x.VideoProcessed)
+      .ToList();
 
     /// <summary>
     /// Method retrieves the specific submission.
@@ -52,12 +57,21 @@ namespace API.Controllers
     /// POST: /api/submissions
     /// </summary>
     /// <param name="submission">submission</param>
+    /// <param name="channel">channel</param>
     /// <returns>JSON</returns>
     [HttpPost]
-    public async Task<Submission> Create([FromBody] Submission submission)
+    public async Task<Submission> Create(
+      [FromBody] Submission submission,
+      [FromServices] Channel<EditVideoMessage> channel)
     {
+      submission.VideoProcessed = false;
       _ctx.Add(submission);
       await _ctx.SaveChangesAsync();
+      await channel.Writer.WriteAsync(new EditVideoMessage
+      {
+        SubmissionId = submission.Id,
+        Input = submission.Video,
+      });
       return submission;
     }
 

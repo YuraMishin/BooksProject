@@ -20,5 +20,10 @@ namespace Domain
     /// Description
     /// </summary>
     public string Description { get; set; }
+
+    /// <summary>
+    /// VideoProcessed
+    /// </summary>
+    public bool VideoProcessed { get; set; }
   }
 }
