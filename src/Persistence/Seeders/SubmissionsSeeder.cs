@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Threading.Tasks;
+using Domain;
 
 namespace Persistence.Seeders
 {
@@ -19,16 +20,20 @@ namespace Persistence.Seeders
       {
         var bookId = context.Books.Where(book => book.Title.Equals("Book Current")).First().Id;
 
-        //var submission = new Submission
-        //{
-        //  BookId = bookId,
-        //  Description = "Description",
-        //  Video = "default.mp4",
-        //  VideoProcessed = true
-        //};
+        var submission = new Submission
+        {
+          BookId = bookId,
+          Description = "Description",
+          VideoProcessed = true,
+          Video = new Video
+          {
+            ThumbLink = "default.jpg",
+            VideoLink = "default.mp4"
+          }
+        };
 
-        //await context.Submissions.AddAsync(submission);
-        //await context.SaveChangesAsync();
+        await context.Submissions.AddAsync(submission);
+        await context.SaveChangesAsync();
       }
     }
   }

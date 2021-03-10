@@ -15,13 +15,15 @@
 
         <v-stepper-step step="2">Review</v-stepper-step>
       </v-stepper-header>
-      <v-stepper-items>
-        <v-stepper-content class="pt-0" step="1">
+      <v-stepper-items class="fpt-0">
+        <v-stepper-content step="1">
           <div>
             <v-text-field label="Title" v-model="form.title"></v-text-field>
             <v-text-field label="Description" v-model="form.description"></v-text-field>
-            <v-select :items="difficultyItems" v-model="form.difficulty" label="Difficulty"></v-select>
-            <v-select :items="bookItems" v-model="form.prerequisites" label="Prerequisites"
+            <v-select :items="difficultyItems" v-model="form.difficulty"
+                      label="Difficulty"></v-select>
+            <v-select :items="bookItems" v-model="form.prerequisites"
+                      label="Prerequisites"
                       multiple small-chips chips deletable-chips></v-select>
             <v-select :items="bookItems" v-model="form.progressions" label="Progressions"
                       multiple small-chips chips deletable-chips></v-select>

@@ -1,12 +1,10 @@
 using System;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using Domain;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -14,61 +12,41 @@ using Persistence;
 
 namespace API.BackgroundServices.VideoEditing
 {
-  /// <summary>
-  /// Class VideoEditingBackgroundService
-  /// </summary>
   public class VideoEditingBackgroundService : BackgroundService
   {
-    private readonly IWebHostEnvironment _env;
     private readonly ILogger<VideoEditingBackgroundService> _logger;
     private readonly IServiceProvider _serviceProvider;
     private readonly VideoManager _videoManager;
     private readonly ChannelReader<EditVideoMessage> _channelReader;
 
-    /// <summary>
-    /// Constructor
-    /// </summary>
-    /// <param name="env">env</param>
-    /// <param name="channel">channel</param>
-    /// <param name="logger">logger</param>
-    /// <param name="serviceProvider">serviceProvider</param>
-    /// <param name="videoManager">videoManager</param>
     public VideoEditingBackgroundService(
-        IWebHostEnvironment env,
         Channel<EditVideoMessage> channel,
         ILogger<VideoEditingBackgroundService> logger,
         IServiceProvider serviceProvider,
         VideoManager videoManager)
     {
-      _env = env;
       _logger = logger;
       _serviceProvider = serviceProvider;
       _videoManager = videoManager;
       _channelReader = channel.Reader;
     }
 
-    /// <summary>
-    /// Method performs the CLI tool
-    /// </summary>
-    /// <param name="stoppingToken">stoppingToken</param>
-    /// <returns>Task</returns>
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
       while (await _channelReader.WaitToReadAsync(stoppingToken))
       {
         var message = await _channelReader.ReadAsync(stoppingToken);
+        var inputPath = _videoManager.TemporarySavePath(message.Input);
+        var outputConvertedName = _videoManager.GenerateConvertedFileName();
+        var outputThumbnailName = _videoManager.GenerateThumbnailFileName();
+        var outputConvertedPath = _videoManager.TemporarySavePath(outputConvertedName);
+        var outputThumbnailPath = _videoManager.TemporarySavePath(outputThumbnailName);
         try
         {
-          var inputPath = _videoManager.TemporarySavePath(message.Input);
-          var outputConvertedName = _videoManager.GenerateConvertedFileName();
-          var outputThumbnailName = _videoManager.GenerateThumbnailFileName();
-          var outputConvertedPath = _videoManager.TemporarySavePath(outputConvertedName);
-          var outputThumbnailPath = _videoManager.TemporarySavePath(outputThumbnailName);
           var startInfo = new ProcessStartInfo
           {
-            FileName = Path.Combine(_env.ContentRootPath, "ffmpeg", "ffmpeg.exe"),
+            FileName = _videoManager.FFMPEGPath,
             Arguments = $"-y -i {inputPath} -an -vf scale=100x100 {outputConvertedPath} -ss 00:00:00 -vframes 1 -vf scale=100x100 {outputThumbnailPath}",
-            WorkingDirectory = _videoManager.WorkingDirectory,
             CreateNoWindow = true,
             UseShellExecute = false,
           };
@@ -79,9 +57,14 @@ namespace API.BackgroundServices.VideoEditing
             process.WaitForExit();
           }
 
-          if (!_videoManager.TemporaryVideoExists(outputConvertedName))
+          if (!_videoManager.TemporaryFileExists(outputConvertedName))
           {
             throw new Exception("FFMPEG failed to generate converted video");
+          }
+
+          if (!_videoManager.TemporaryFileExists(outputThumbnailName))
+          {
+            throw new Exception("FFMPEG failed to generate thumbnail");
           }
 
           using (var scope = _serviceProvider.CreateScope())
@@ -90,8 +73,6 @@ namespace API.BackgroundServices.VideoEditing
 
             var submission = ctx.Submissions.FirstOrDefault(x => x.Id.Equals(message.SubmissionId));
 
-            var mockId = submission.VideoId;
-
             submission.Video = new Video
             {
               VideoLink = outputConvertedName,
@@ -99,19 +80,18 @@ namespace API.BackgroundServices.VideoEditing
             };
             submission.VideoProcessed = true;
 
-            var mockVideo = await ctx.Videos.FindAsync(mockId);
-            ctx.Videos.Remove(mockVideo);
-
             await ctx.SaveChangesAsync(stoppingToken);
           }
         }
         catch (Exception e)
         {
           _logger.LogError(e, "Video Processing Failed for {0}", message.Input);
+          _videoManager.DeleteTemporaryFile(outputConvertedName);
+          _videoManager.DeleteTemporaryFile(outputThumbnailName);
         }
         finally
         {
-          _videoManager.DeleteTemporaryVideo(message.Input);
+          _videoManager.DeleteTemporaryFile(message.Input);
         }
       }
     }

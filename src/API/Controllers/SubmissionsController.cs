@@ -67,7 +67,7 @@ namespace API.Controllers
       [FromServices] Channel<EditVideoMessage> channel,
       [FromServices] VideoManager videoManager)
     {
-      if (!videoManager.TemporaryVideoExists(submissionForm.Video))
+      if (!videoManager.TemporaryFileExists(submissionForm.Video))
       {
         return BadRequest();
       }

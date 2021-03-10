@@ -12,6 +12,7 @@
            :src="`http://localhost:5000/api/videos/${video.videoLink}`"
            :poster="`http://localhost:5000/api/videos/${video.thumbLink}`"
            preload="none"
+           playsinline
     ></video>
 
   </div>
@@ -23,7 +24,7 @@
     props: {
       video: {
         required: true,
-        type: Object || String,
+        type: Object,
       }
     },
     data: () => ({

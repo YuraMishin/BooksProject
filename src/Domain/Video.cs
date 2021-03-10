@@ -2,9 +2,8 @@ using System;
 
 namespace Domain
 {
-  public class Video
+  public class Video : BaseModel<Guid>
   {
-    public Guid Id { get; set; }
     public string VideoLink { get; set; }
     public string ThumbLink { get; set; }
   }

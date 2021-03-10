@@ -46,6 +46,8 @@ namespace API.BackgroundServices.VideoEditing
     /// </summary>
     public string WorkingDirectory => _env.WebRootPath;
 
+    public string FFMPEGPath => Path.Combine(_env.ContentRootPath, "ffmpeg", "ffmpeg.exe");
+
     /// <summary>
     /// Method checks the filename 
     /// </summary>
@@ -61,7 +63,7 @@ namespace API.BackgroundServices.VideoEditing
     /// </summary>
     /// <param name="fileName">fileName</param>
     /// <returns>bool</returns>
-    public bool TemporaryVideoExists(string fileName)
+    public bool TemporaryFileExists(string fileName)
     {
       var path = TemporarySavePath(fileName);
       return File.Exists(path);
@@ -71,7 +73,7 @@ namespace API.BackgroundServices.VideoEditing
     /// Method deletes temp video
     /// </summary>
     /// <param name="fileName"></param>
-    public void DeleteTemporaryVideo(string fileName)
+    public void DeleteTemporaryFile(string fileName)
     {
       var path = TemporarySavePath(fileName);
       File.Delete(path);
@@ -97,7 +99,7 @@ namespace API.BackgroundServices.VideoEditing
     /// Method generates converted thumbnail name
     /// </summary>
     /// <returns>string</returns>
-    public string GenerateThumbnailFileName() => $"{ThumbnailPrefix}{DateTime.Now.Ticks}.png";
+    public string GenerateThumbnailFileName() => $"{ThumbnailPrefix}{DateTime.Now.Ticks}.jpg";
 
     /// <summary>
     /// Method saves video

@@ -19,28 +19,6 @@
             Input
             </summary>
         </member>
-        <member name="T:API.BackgroundServices.VideoEditing.VideoEditingBackgroundService">
-            <summary>
-            Class VideoEditingBackgroundService
-            </summary>
-        </member>
-        <member name="M:API.BackgroundServices.VideoEditing.VideoEditingBackgroundService.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment,System.Threading.Channels.Channel{API.BackgroundServices.VideoEditing.EditVideoMessage},Microsoft.Extensions.Logging.ILogger{API.BackgroundServices.VideoEditing.VideoEditingBackgroundService},System.IServiceProvider,API.BackgroundServices.VideoEditing.VideoManager)">
-            <summary>
-            Constructor
-            </summary>
-            <param name="env">env</param>
-            <param name="channel">channel</param>
-            <param name="logger">logger</param>
-            <param name="serviceProvider">serviceProvider</param>
-            <param name="videoManager">videoManager</param>
-        </member>
-        <member name="M:API.BackgroundServices.VideoEditing.VideoEditingBackgroundService.ExecuteAsync(System.Threading.CancellationToken)">
-            <summary>
-            Method performs the CLI tool
-            </summary>
-            <param name="stoppingToken">stoppingToken</param>
-            <returns>Task</returns>
-        </member>
         <member name="T:API.BackgroundServices.VideoEditing.VideoManager">
             <summary>
             Class VideoManager
@@ -84,14 +62,14 @@
             <param name="fileName">fileName</param>
             <returns>bool</returns>
         </member>
-        <member name="M:API.BackgroundServices.VideoEditing.VideoManager.TemporaryVideoExists(System.String)">
+        <member name="M:API.BackgroundServices.VideoEditing.VideoManager.TemporaryFileExists(System.String)">
             <summary>
             Method checks if the temp video exists
             </summary>
             <param name="fileName">fileName</param>
             <returns>bool</returns>
         </member>
-        <member name="M:API.BackgroundServices.VideoEditing.VideoManager.DeleteTemporaryVideo(System.String)">
+        <member name="M:API.BackgroundServices.VideoEditing.VideoManager.DeleteTemporaryFile(System.String)">
             <summary>
             Method deletes temp video
             </summary>

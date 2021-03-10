@@ -2,6 +2,10 @@ import colors from 'vuetify/es5/util/colors'
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  publicRuntimeConfig: {
+    api: process.env.BASE_URL
+  },
+
   head: {
     titleTemplate: '%s - Books Project',
     title: 'Welcome',
@@ -27,7 +31,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '~assets/styles/main.css'
+    '~assets/styles/main.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins

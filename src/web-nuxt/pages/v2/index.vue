@@ -2,12 +2,17 @@
   <div>
     <h1>Books</h1>
     <div>
+      <div>
+        {{ $config.api }}
+      </div>
+
       <div v-for="(s, index) in sections" :key="index">
         <div class="d-flex flex-column align-center">
           <p class="text-h5">
             {{s.title}}
           </p>
           <div>
+
             <v-btn
               class="mx-1"
               v-for="(item, index) in s.collection"
@@ -15,6 +20,7 @@
               :to="s.routeFactory(item.id)">
               {{item.title ? item.title : item.name}}
             </v-btn>
+
           </div>
         </div>
         <v-divider class="my-5"></v-divider>
