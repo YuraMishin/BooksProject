@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using API.BackgroundServices.VideoEditing;
+using API.FormModels;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
 using Persistence;
@@ -56,28 +57,45 @@ namespace API.Controllers
     /// Method creates a submission.
     /// POST: /api/submissions
     /// </summary>
-    /// <param name="submission">submission</param>
+    /// <param name="submissionForm">submissionForm</param>
     /// <param name="channel">channel</param>
+    /// <param name="videoManager">videoManager</param>
     /// <returns>JSON</returns>
     [HttpPost]
     public async Task<IActionResult> Create(
-      [FromBody] Submission submission,
+      [FromBody] SubmissionFormModel submissionForm,
       [FromServices] Channel<EditVideoMessage> channel,
       [FromServices] VideoManager videoManager)
     {
-      if (!videoManager.TemporaryVideoExists(submission.Video))
+      if (!videoManager.TemporaryVideoExists(submissionForm.Video))
       {
         return BadRequest();
       }
 
-      submission.VideoProcessed = false;
+      var mockVideo = new Video
+      {
+        ThumbLink = "mock",
+        VideoLink = "mock"
+      };
+
+      var submission = new Submission
+      {
+        BookId = submissionForm.BookId,
+        Description = submissionForm.Description,
+        VideoProcessed = false,
+        Video = mockVideo
+      };
+
       _ctx.Add(submission);
+
       await _ctx.SaveChangesAsync();
+
       await channel.Writer.WriteAsync(new EditVideoMessage
       {
         SubmissionId = submission.Id,
-        Input = submission.Video,
+        Input = submissionForm.Video,
       });
+
       return Ok(submission);
     }
 

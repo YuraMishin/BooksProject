@@ -18,7 +18,7 @@ namespace API.Controllers
     /// <summary>
     /// Constructor
     /// </summary>
-    /// <param name="env">env</param>
+    /// <param name="videoManager">videoManager</param>
     public VideosController(VideoManager videoManager)
     {
       _videoManager = videoManager;
@@ -54,7 +54,12 @@ namespace API.Controllers
       return new FileStreamResult(new FileStream(savePath, FileMode.Open, FileAccess.Read), "video/*");
     }
 
-
+    /// <summary>
+    /// Method deletes temp video.
+    /// DELETE: /api/videos/{fileName}
+    /// </summary>
+    /// <param name="fileName"></param>
+    /// <returns></returns>
     [HttpDelete("{fileName}")]
     public IActionResult DeleteTemporaryVideo(string fileName)
     {

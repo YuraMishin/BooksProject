@@ -151,6 +151,7 @@ namespace API.Controllers
     {
       var result = await _context
         .Submissions
+        .Include(x => x.Video)
         .Where(submission => submission.BookId.Equals(bookId))
         .ToListAsync();
 

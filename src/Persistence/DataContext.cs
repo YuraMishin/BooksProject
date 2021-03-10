@@ -42,6 +42,8 @@ namespace Persistence
     /// Categories
     /// </summary>
     public DbSet<Category> Categories { get; set; }
+
+    public DbSet<Video> Videos { get; set; }
     #endregion
 
     /// <summary>

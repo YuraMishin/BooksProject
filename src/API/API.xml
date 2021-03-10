@@ -4,6 +4,132 @@
         <name>API</name>
     </assembly>
     <members>
+        <member name="T:API.BackgroundServices.VideoEditing.EditVideoMessage">
+            <summary>
+            Class EditVideoMessage
+            </summary>
+        </member>
+        <member name="P:API.BackgroundServices.VideoEditing.EditVideoMessage.SubmissionId">
+            <summary>
+            SubmissionId
+            </summary>
+        </member>
+        <member name="P:API.BackgroundServices.VideoEditing.EditVideoMessage.Input">
+            <summary>
+            Input
+            </summary>
+        </member>
+        <member name="T:API.BackgroundServices.VideoEditing.VideoEditingBackgroundService">
+            <summary>
+            Class VideoEditingBackgroundService
+            </summary>
+        </member>
+        <member name="M:API.BackgroundServices.VideoEditing.VideoEditingBackgroundService.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment,System.Threading.Channels.Channel{API.BackgroundServices.VideoEditing.EditVideoMessage},Microsoft.Extensions.Logging.ILogger{API.BackgroundServices.VideoEditing.VideoEditingBackgroundService},System.IServiceProvider,API.BackgroundServices.VideoEditing.VideoManager)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="env">env</param>
+            <param name="channel">channel</param>
+            <param name="logger">logger</param>
+            <param name="serviceProvider">serviceProvider</param>
+            <param name="videoManager">videoManager</param>
+        </member>
+        <member name="M:API.BackgroundServices.VideoEditing.VideoEditingBackgroundService.ExecuteAsync(System.Threading.CancellationToken)">
+            <summary>
+            Method performs the CLI tool
+            </summary>
+            <param name="stoppingToken">stoppingToken</param>
+            <returns>Task</returns>
+        </member>
+        <member name="T:API.BackgroundServices.VideoEditing.VideoManager">
+            <summary>
+            Class VideoManager
+            </summary>
+        </member>
+        <member name="F:API.BackgroundServices.VideoEditing.VideoManager._env">
+            <summary>
+            IWebHostEnvironment
+            </summary>
+        </member>
+        <member name="F:API.BackgroundServices.VideoEditing.VideoManager.TempPrefix">
+            <summary>
+            TempPrefix
+            </summary>
+        </member>
+        <member name="F:API.BackgroundServices.VideoEditing.VideoManager.ConvertedPrefix">
+            <summary>
+            ConvertedPrefix
+            </summary>
+        </member>
+        <member name="F:API.BackgroundServices.VideoEditing.VideoManager.ThumbnailPrefix">
+            <summary>
+            ThumbnailPrefix
+            </summary>
+        </member>
+        <member name="M:API.BackgroundServices.VideoEditing.VideoManager.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="env">env</param>
+        </member>
+        <member name="P:API.BackgroundServices.VideoEditing.VideoManager.WorkingDirectory">
+            <summary>
+            Method retrieves WorkingDirectory
+            </summary>
+        </member>
+        <member name="M:API.BackgroundServices.VideoEditing.VideoManager.Temporary(System.String)">
+            <summary>
+            Method checks the filename 
+            </summary>
+            <param name="fileName">fileName</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:API.BackgroundServices.VideoEditing.VideoManager.TemporaryVideoExists(System.String)">
+            <summary>
+            Method checks if the temp video exists
+            </summary>
+            <param name="fileName">fileName</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:API.BackgroundServices.VideoEditing.VideoManager.DeleteTemporaryVideo(System.String)">
+            <summary>
+            Method deletes temp video
+            </summary>
+            <param name="fileName"></param>
+        </member>
+        <member name="M:API.BackgroundServices.VideoEditing.VideoManager.DevVideoPath(System.String)">
+            <summary>
+            Method forms video path
+            </summary>
+            <param name="fileName">fileName</param>
+            <returns>string</returns>
+        </member>
+        <member name="M:API.BackgroundServices.VideoEditing.VideoManager.GenerateConvertedFileName">
+            <summary>
+            Method generates converted filename
+            </summary>
+            <returns>string</returns>
+        </member>
+        <member name="M:API.BackgroundServices.VideoEditing.VideoManager.GenerateThumbnailFileName">
+            <summary>
+            Method generates converted thumbnail name
+            </summary>
+            <returns>string</returns>
+        </member>
+        <member name="M:API.BackgroundServices.VideoEditing.VideoManager.SaveTemporaryVideo(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Method saves video
+            </summary>
+            <param name="video">video</param>
+            <returns>string</returns>
+        </member>
+        <member name="M:API.BackgroundServices.VideoEditing.VideoManager.TemporarySavePath(System.String)">
+            <summary>
+            Method forms temp save path
+            </summary>
+            <param name="fileName">fileName</param>
+            <returns>string</returns>
+        </member>
         <member name="T:API.Controllers.BooksController">
             <summary>
             Class BooksController.
@@ -181,13 +307,14 @@
             <param name="id">id</param>
             <returns>JSON</returns>
         </member>
-        <member name="M:API.Controllers.SubmissionsController.Create(Domain.Submission,System.Threading.Channels.Channel{API.BackgroundServices.VideoEditing.EditVideoMessage},API.BackgroundServices.VideoEditing.VideoManager)">
+        <member name="M:API.Controllers.SubmissionsController.Create(API.FormModels.SubmissionFormModel,System.Threading.Channels.Channel{API.BackgroundServices.VideoEditing.EditVideoMessage},API.BackgroundServices.VideoEditing.VideoManager)">
             <summary>
             Method creates a submission.
             POST: /api/submissions
             </summary>
-            <param name="submission">submission</param>
+            <param name="submissionForm">submissionForm</param>
             <param name="channel">channel</param>
+            <param name="videoManager">videoManager</param>
             <returns>JSON</returns>
         </member>
         <member name="M:API.Controllers.SubmissionsController.Update(Domain.Submission)">
@@ -216,7 +343,7 @@
             <summary>
             Constructor
             </summary>
-            <param name="env">env</param>
+            <param name="videoManager">videoManager</param>
         </member>
         <member name="M:API.Controllers.VideosController.UploadVideo(Microsoft.AspNetCore.Http.IFormFile)">
             <summary>
@@ -233,6 +360,14 @@
             </summary>
             <param name="video">video</param>
             <returns>File</returns>
+        </member>
+        <member name="M:API.Controllers.VideosController.DeleteTemporaryVideo(System.String)">
+            <summary>
+            Method deletes temp video.
+            DELETE: /api/videos/{fileName}
+            </summary>
+            <param name="fileName"></param>
+            <returns></returns>
         </member>
         <member name="T:API.Extensions.ApplicationServiceExtensions">
             <summary>
@@ -276,6 +411,26 @@
         <member name="P:API.FormModels.BookFormModel.Categories">
             <summary>
             Categories
+            </summary>
+        </member>
+        <member name="T:API.FormModels.SubmissionFormModel">
+            <summary>
+            Class SubmissionFormModel
+            </summary>
+        </member>
+        <member name="P:API.FormModels.SubmissionFormModel.BookId">
+            <summary>
+            BookId
+            </summary>
+        </member>
+        <member name="P:API.FormModels.SubmissionFormModel.Description">
+            <summary>
+            Description
+            </summary>
+        </member>
+        <member name="P:API.FormModels.SubmissionFormModel.Video">
+            <summary>
+            Video
             </summary>
         </member>
         <member name="T:API.Middleware.ErrorHandlingMiddleware">

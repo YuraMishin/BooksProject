@@ -59,7 +59,7 @@ namespace API.Controllers
     /// <param name="id">id</param>
     /// <returns>JSON</returns>
     [HttpGet("{id}/books")]
-    public async Task<IActionResult> ListCategoryBooks(Guid id)
+    public IActionResult ListCategoryBooks(Guid id)
     {
       var books = _context
         .Categories

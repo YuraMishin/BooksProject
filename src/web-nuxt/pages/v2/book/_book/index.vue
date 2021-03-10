@@ -3,10 +3,14 @@
     <template v-slot:content>
       <div v-if="submissions">
 
-          <v-card class="mb-3" v-for="(s, index) in submissions" :key="index">
-            <video-player :video="s.video" :key="index"/>
-            <v-card-text>{{s.description}}</v-card-text>
-          </v-card>
+        <v-card
+          class="mb-3"
+          v-for="(s, index) in submissions" :key="index">
+          <video-player
+            :video="s.video"
+            :key="index"/>
+          <v-card-text>{{s.description}}</v-card-text>
+        </v-card>
 
       </div>
     </template>

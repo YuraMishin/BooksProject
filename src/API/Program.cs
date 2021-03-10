@@ -41,7 +41,7 @@ namespace API
           await DifficultiesSeeder.SeedData(context);
           await CategoriesSeeder.SeedData(context);
           await BooksSeeder.SeedData(context);
-          await SubmissionsSeeder.SeedData(context);
+          //await SubmissionsSeeder.SeedData(context);
         }
       }
       catch (Exception ex)
