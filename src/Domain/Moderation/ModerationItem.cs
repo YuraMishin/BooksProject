@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Domain.Moderation
 {
@@ -16,5 +17,10 @@ namespace Domain.Moderation
     /// Type
     /// </summary>
     public string Type { get; set; }
+
+    /// <summary>
+    /// Comments
+    /// </summary>
+    public IList<Comment> Comments { get; set; } = new List<Comment>();
   }
 }

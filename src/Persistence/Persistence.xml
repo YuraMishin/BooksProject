@@ -51,6 +51,11 @@
             ModerationItems
             </summary>
         </member>
+        <member name="P:Persistence.DataContext.Comments">
+            <summary>
+            Comments
+            </summary>
+        </member>
         <member name="M:Persistence.DataContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <summary>
             Method finetunes DbContext via Fluent API
@@ -423,6 +428,29 @@
             <param name="migrationBuilder">migrationBuilder</param>
         </member>
         <member name="M:Persistence.Migrations.AddModerationItemsTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Method builds target model
+            </summary>
+            <param name="modelBuilder">modelBuilder</param>
+        </member>
+        <member name="T:Persistence.Migrations.AddCommentsTable">
+            <summary>
+            Class AddCommentsTable
+            </summary>
+        </member>
+        <member name="M:Persistence.Migrations.AddCommentsTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method performs the migration
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:Persistence.Migrations.AddCommentsTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method rollbacks the migration
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:Persistence.Migrations.AddCommentsTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <summary>
             Method builds target model
             </summary>

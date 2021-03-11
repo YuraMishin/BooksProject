@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.FormModels;
@@ -38,56 +39,20 @@ namespace API.Controllers
       _context = context;
     }
 
-    ///// <summary>
-    ///// Method retrieves all the books.
-    ///// GET: /api/books
-    ///// </summary>
-    ///// <returns>JSON</returns>
-    //[HttpGet]
-    //public async Task<IActionResult> List()
-    //{
-    //  var result = await _mediator.Send(new List.Query());
-
-    //  return Ok(result.Select(book => BookViewModels.Default.Compile().Invoke(book)).ToList());
-    //}
-
     /// <summary>
     /// Method retrieves all the books.
     /// GET: /api/books
     /// </summary>
     /// <returns>JSON</returns>
     [HttpGet]
-    public async Task<IActionResult> Index()
-    {
-      var result = await _context.Books.Select(BookViewModels.Default).ToListAsync();
+    public IEnumerable<object> All() => _context.Books.Select(BookViewModel.Projection).ToList();
 
-      return Ok(result);
-    }
-
-    /// <summary>
-    /// Method retrieves the specific book.
-    /// GET: /api/books/id
-    /// </summary>
-    /// <param name="id">id</param>
-    /// <returns>JSON</returns>
     [HttpGet("{id}")]
-    public async Task<IActionResult> Details(Guid id)
-    {
-      return Ok(await _mediator.Send(new Details.Query { Id = id }));
-    }
-
-    ///// <summary>
-    ///// Method creates a book.
-    ///// POST: /api/books/
-    ///// </summary>
-    ///// <param name="command">command</param>
-    ///// <returns>JSON</returns>
-    //[HttpPost]
-    //public async Task<IActionResult> Create([FromBody] Create.Command command)
-    //{
-    //  return Ok(await _mediator.Send(command));
-    //}
-
+    public object Get(Guid id) =>
+      _context.Books
+        .Where(x => x.Id.Equals(id))
+        .Select(BookViewModel.Projection)
+        .FirstOrDefault();
 
     /// <summary> Method creates a book.
     /// POST: /api/books/
@@ -111,21 +76,15 @@ namespace API.Controllers
       await _context.AddAsync(book);
       await _context.SaveChangesAsync();
 
-      return Ok(BookViewModels.Default.Compile().Invoke(book));
+      return Ok(BookViewModel.Create(book));
     }
 
-    /// <summary>
-    /// Method updates the book.
-    /// PUT: /api/books/id
-    /// </summary>
-    /// <param name="id">id</param>
-    /// <param name="command">command</param>
-    /// <returns>JSON</returns>
-    [HttpPut("{id}")]
-    public async Task<IActionResult> Edit(Guid id, Edit.Command command)
+    [HttpPut]
+    public async Task<object> Update([FromBody] Book book)
     {
-      command.Id = id;
-      return Ok(await _mediator.Send(command));
+      _context.Add(book);
+      await _context.SaveChangesAsync();
+      return BookViewModel.Create(book);
     }
 
     /// <summary>

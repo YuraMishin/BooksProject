@@ -12,6 +12,9 @@ using Persistence;
 
 namespace API.BackgroundServices.VideoEditing
 {
+  /// <summary>
+  /// Class VideoEditingBackgroundService
+  /// </summary>
   public class VideoEditingBackgroundService : BackgroundService
   {
     private readonly ILogger<VideoEditingBackgroundService> _logger;
@@ -19,6 +22,13 @@ namespace API.BackgroundServices.VideoEditing
     private readonly VideoManager _videoManager;
     private readonly ChannelReader<EditVideoMessage> _channelReader;
 
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="channel">channel</param>
+    /// <param name="logger">logger</param>
+    /// <param name="serviceProvider">serviceProvider</param>
+    /// <param name="videoManager">videoManager</param>
     public VideoEditingBackgroundService(
         Channel<EditVideoMessage> channel,
         ILogger<VideoEditingBackgroundService> logger,
@@ -31,6 +41,11 @@ namespace API.BackgroundServices.VideoEditing
       _channelReader = channel.Reader;
     }
 
+    /// <summary>
+    /// Method performs the CLI tool
+    /// </summary>
+    /// <param name="stoppingToken">stoppingToken</param>
+    /// <returns>Task</returns>
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
       while (await _channelReader.WaitToReadAsync(stoppingToken))

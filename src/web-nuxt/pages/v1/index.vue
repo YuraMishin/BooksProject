@@ -1,17 +1,25 @@
 <template>
-  <div>
-    <p>
-      <nuxt-link to="/v1/">Books v1</nuxt-link>
-    </p><p>
-      <nuxt-link to="/v2/">Books v2</nuxt-link>
-    </p>
-
+  <div class="home-page">
+    <section class="intro">
+      <h1>Books Project</h1>
+    </section>
+    <p>{{new Date().toISOString() | date}}</p>
+    <BookList v-if="books"
+              :books="books"/>
   </div>
 </template>
 
 <script>
-  export default {
+  import {mapState} from 'vuex';
 
+  export default {
+    layout: 'v1/default',
+    computed: {
+      ...mapState('books', {
+        books: state => state.books
+      })
+    },
+    methods: {}
   };
 </script>
 

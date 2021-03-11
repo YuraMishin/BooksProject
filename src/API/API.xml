@@ -19,6 +19,27 @@
             Input
             </summary>
         </member>
+        <member name="T:API.BackgroundServices.VideoEditing.VideoEditingBackgroundService">
+            <summary>
+            Class VideoEditingBackgroundService
+            </summary>
+        </member>
+        <member name="M:API.BackgroundServices.VideoEditing.VideoEditingBackgroundService.#ctor(System.Threading.Channels.Channel{API.BackgroundServices.VideoEditing.EditVideoMessage},Microsoft.Extensions.Logging.ILogger{API.BackgroundServices.VideoEditing.VideoEditingBackgroundService},System.IServiceProvider,API.BackgroundServices.VideoEditing.VideoManager)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="channel">channel</param>
+            <param name="logger">logger</param>
+            <param name="serviceProvider">serviceProvider</param>
+            <param name="videoManager">videoManager</param>
+        </member>
+        <member name="M:API.BackgroundServices.VideoEditing.VideoEditingBackgroundService.ExecuteAsync(System.Threading.CancellationToken)">
+            <summary>
+            Method performs the CLI tool
+            </summary>
+            <param name="stoppingToken">stoppingToken</param>
+            <returns>Task</returns>
+        </member>
         <member name="T:API.BackgroundServices.VideoEditing.VideoManager">
             <summary>
             Class VideoManager
@@ -126,19 +147,11 @@
             <param name="mediator">mediator</param>
             <param name="context">context</param>
         </member>
-        <member name="M:API.Controllers.BooksController.Index">
+        <member name="M:API.Controllers.BooksController.All">
             <summary>
             Method retrieves all the books.
             GET: /api/books
             </summary>
-            <returns>JSON</returns>
-        </member>
-        <member name="M:API.Controllers.BooksController.Details(System.Guid)">
-            <summary>
-            Method retrieves the specific book.
-            GET: /api/books/id
-            </summary>
-            <param name="id">id</param>
             <returns>JSON</returns>
         </member>
         <member name="M:API.Controllers.BooksController.Create(API.FormModels.BookFormModel)">
@@ -146,15 +159,6 @@
             POST: /api/books/
             </summary>
             <param name="bookForm">bookForm</param>
-            <returns>JSON</returns>
-        </member>
-        <member name="M:API.Controllers.BooksController.Edit(System.Guid,Application.Books.Edit.Command)">
-            <summary>
-            Method updates the book.
-            PUT: /api/books/id
-            </summary>
-            <param name="id">id</param>
-            <param name="command">command</param>
             <returns>JSON</returns>
         </member>
         <member name="M:API.Controllers.BooksController.Delete(System.Guid)">
@@ -276,12 +280,29 @@
             </summary>
             <returns>JSON</returns>
         </member>
-        <member name="M:API.Controllers.ModerationItemController.Get(System.Guid)">
+        <member name="M:API.Controllers.ModerationItemController.Get(System.Int32)">
             <summary>
             Method retrieves the specific moderation item.
             GET: /api/moderation-items/{id}
             </summary>
             <param name="id">id</param>
+            <returns>JSON</returns>
+        </member>
+        <member name="M:API.Controllers.ModerationItemController.GetComments(System.Guid)">
+            <summary>
+            Method retrieves the specific comment.
+            GET: /api/moderation-items/{id}/comments
+            </summary>
+            <param name="id"></param>
+            <returns>JSON</returns>
+        </member>
+        <member name="M:API.Controllers.ModerationItemController.Comment(System.Guid,Domain.Comment)">
+            <summary>
+            Method saves the specific comment.
+            POST: /api/moderation-items/{id}/comments
+            </summary>
+            <param name="id">id</param>
+            <param name="comment">comment</param>
             <returns>JSON</returns>
         </member>
         <member name="T:API.Controllers.SubmissionsController">
@@ -537,14 +558,9 @@
             <param name="app">app</param>
             <param name="logger">logger</param>
         </member>
-        <member name="T:API.ViewModels.BookViewModels">
+        <member name="T:API.ViewModels.BookViewModel">
             <summary>
             Class BookViewModels
-            </summary>
-        </member>
-        <member name="P:API.ViewModels.BookViewModels.Default">
-            <summary>
-            Method originates the output object
             </summary>
         </member>
     </members>

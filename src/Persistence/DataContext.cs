@@ -53,6 +53,11 @@ namespace Persistence
     /// ModerationItems
     /// </summary>
     public DbSet<ModerationItem> ModerationItems { get; set; }
+
+    /// <summary>
+    /// Comments
+    /// </summary>
+    public DbSet<Comment> Comments { get; set; }
     #endregion
 
     /// <summary>
