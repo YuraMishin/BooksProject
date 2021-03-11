@@ -253,6 +253,37 @@
             <param name="id">id</param>
             <returns>JSON</returns>
         </member>
+        <member name="T:API.Controllers.ModerationItemController">
+            <summary>
+            Class ModerationItemController
+            </summary>
+        </member>
+        <member name="F:API.Controllers.ModerationItemController._ctx">
+            <summary>
+            DataContext
+            </summary>
+        </member>
+        <member name="M:API.Controllers.ModerationItemController.#ctor(Persistence.DataContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="ctx">ctx</param>
+        </member>
+        <member name="M:API.Controllers.ModerationItemController.All">
+            <summary>
+            Method retrieves all the moderation items.
+            GET: /api/moderation-items/
+            </summary>
+            <returns>JSON</returns>
+        </member>
+        <member name="M:API.Controllers.ModerationItemController.Get(System.Guid)">
+            <summary>
+            Method retrieves the specific moderation item.
+            GET: /api/moderation-items/{id}
+            </summary>
+            <param name="id">id</param>
+            <returns>JSON</returns>
+        </member>
         <member name="T:API.Controllers.SubmissionsController">
             <summary>
             Class BooksController.

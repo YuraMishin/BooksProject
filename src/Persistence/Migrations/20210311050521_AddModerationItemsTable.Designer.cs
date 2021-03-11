@@ -8,8 +8,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Persistence.Migrations
 {
   [DbContext(typeof(DataContext))]
-  [Migration("20210310054809_AddVideosTable")]
-  partial class AddVideosTable
+  [Migration("20210311050521_AddModerationItemsTable")]
+  partial class AddModerationItemsTable
   {
     /// <summary>
     /// Method builds target model
@@ -107,6 +107,23 @@ namespace Persistence.Migrations
             b.HasKey("Id");
 
             b.ToTable("Difficulties");
+          });
+
+      modelBuilder.Entity("Domain.Moderation.ModerationItem", b =>
+          {
+            b.Property<Guid>("Id")
+                      .ValueGeneratedOnAdd()
+                      .HasColumnType("uuid");
+
+            b.Property<Guid>("Target")
+                      .HasColumnType("uuid");
+
+            b.Property<string>("Type")
+                      .HasColumnType("text");
+
+            b.HasKey("Id");
+
+            b.ToTable("ModerationItems");
           });
 
       modelBuilder.Entity("Domain.Submission", b =>

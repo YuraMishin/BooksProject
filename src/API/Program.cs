@@ -42,6 +42,7 @@ namespace API
           await CategoriesSeeder.SeedData(context);
           await BooksSeeder.SeedData(context);
           await SubmissionsSeeder.SeedData(context);
+          await ModerationsSeeder.SeedData(context);
         }
       }
       catch (Exception ex)

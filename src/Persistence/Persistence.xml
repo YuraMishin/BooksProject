@@ -41,6 +41,16 @@
             Categories
             </summary>
         </member>
+        <member name="P:Persistence.DataContext.Videos">
+            <summary>
+            Videos
+            </summary>
+        </member>
+        <member name="P:Persistence.DataContext.ModerationItems">
+            <summary>
+            ModerationItems
+            </summary>
+        </member>
         <member name="M:Persistence.DataContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <summary>
             Method finetunes DbContext via Fluent API
@@ -372,6 +382,52 @@
             </summary>
             <param name="modelBuilder">modelBuilder</param>
         </member>
+        <member name="T:Persistence.Migrations.AddVideosTable">
+            <summary>
+            Class AddVideosTable
+            </summary>
+        </member>
+        <member name="M:Persistence.Migrations.AddVideosTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method performs the migration
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:Persistence.Migrations.AddVideosTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method rollbacks the migration
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:Persistence.Migrations.AddVideosTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Method builds target model
+            </summary>
+            <param name="modelBuilder">modelBuilder</param>
+        </member>
+        <member name="T:Persistence.Migrations.AddModerationItemsTable">
+            <summary>
+            Class AddModerationItemsTable
+            </summary>
+        </member>
+        <member name="M:Persistence.Migrations.AddModerationItemsTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method performs the migration
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:Persistence.Migrations.AddModerationItemsTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method rollbacks the migration
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:Persistence.Migrations.AddModerationItemsTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Method builds target model
+            </summary>
+            <param name="modelBuilder">modelBuilder</param>
+        </member>
         <member name="T:Persistence.Seeders.BooksSeeder">
             <summary>
             Class BookSeeder.
@@ -403,6 +459,18 @@
             </summary>
         </member>
         <member name="M:Persistence.Seeders.DifficultiesSeeder.SeedData(Persistence.DataContext)">
+            <summary>
+            Method performs the operation
+            </summary>
+            <param name="context">context</param>
+        </member>
+        <member name="T:Persistence.Seeders.ModerationsSeeder">
+            <summary>
+            Class ModerationsSeeder.
+            Seeds Moderations table
+            </summary>
+        </member>
+        <member name="M:Persistence.Seeders.ModerationsSeeder.SeedData(Persistence.DataContext)">
             <summary>
             Method performs the operation
             </summary>

@@ -1,4 +1,5 @@
 using Domain;
+using Domain.Moderation;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistence
@@ -43,7 +44,15 @@ namespace Persistence
     /// </summary>
     public DbSet<Category> Categories { get; set; }
 
+    /// <summary>
+    /// Videos
+    /// </summary>
     public DbSet<Video> Videos { get; set; }
+
+    /// <summary>
+    /// ModerationItems
+    /// </summary>
+    public DbSet<ModerationItem> ModerationItems { get; set; }
     #endregion
 
     /// <summary>

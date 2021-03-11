@@ -105,6 +105,23 @@ namespace Persistence.Migrations
                     b.ToTable("Difficulties");
                 });
 
+            modelBuilder.Entity("Domain.Moderation.ModerationItem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("Target")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ModerationItems");
+                });
+
             modelBuilder.Entity("Domain.Submission", b =>
                 {
                     b.Property<Guid>("Id")

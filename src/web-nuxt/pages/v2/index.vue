@@ -2,10 +2,6 @@
   <div>
     <h1>Books</h1>
     <div>
-      <div>
-        {{ $config.api }}
-      </div>
-
       <div v-for="(s, index) in sections" :key="index">
         <div class="d-flex flex-column align-center">
           <p class="text-h5">

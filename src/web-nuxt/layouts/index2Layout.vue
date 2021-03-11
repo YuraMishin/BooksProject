@@ -8,9 +8,10 @@
       >
         Books Project
       </nuxt-link>
-        <v-spacer></v-spacer>
+      <v-spacer></v-spacer>
 
-        <content-creation-dialog></content-creation-dialog>
+      <v-btn depressed to="/v2/moderation">Moderation</v-btn>
+      <content-creation-dialog></content-creation-dialog>
 
     </v-app-bar>
     <v-main>
