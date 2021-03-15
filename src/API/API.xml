@@ -76,6 +76,11 @@
             Method retrieves WorkingDirectory
             </summary>
         </member>
+        <member name="P:API.BackgroundServices.VideoEditing.VideoManager.FFMPEGPath">
+            <summary>
+            FFMPEGPath
+            </summary>
+        </member>
         <member name="M:API.BackgroundServices.VideoEditing.VideoManager.Temporary(System.String)">
             <summary>
             Method checks the filename 
@@ -154,12 +159,28 @@
             </summary>
             <returns>JSON</returns>
         </member>
+        <member name="M:API.Controllers.BooksController.Get(System.Guid)">
+            <summary>
+            Method retrieves the specific book.
+            GET: /api/books/{id}
+            </summary>
+            <param name="id">id</param>
+            <returns>object</returns>
+        </member>
         <member name="M:API.Controllers.BooksController.Create(API.FormModels.BookFormModel)">
             <summary> Method creates a book.
             POST: /api/books/
             </summary>
             <param name="bookForm">bookForm</param>
             <returns>JSON</returns>
+        </member>
+        <member name="M:API.Controllers.BooksController.Update(Domain.Book)">
+            <summary>
+            Method updates the book.
+            PUT: api/books/{book}
+            </summary>
+            <param name="book">book</param>
+            <returns>object</returns>
         </member>
         <member name="M:API.Controllers.BooksController.Delete(System.Guid)">
             <summary>
@@ -217,6 +238,32 @@
             <param name="id">id</param>
             <returns>JSON</returns>
         </member>
+        <member name="T:API.Controllers.CommentController">
+            <summary>
+            Class CommentController
+            </summary>
+        </member>
+        <member name="M:API.Controllers.CommentController.#ctor(Persistence.DataContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="ctx">ctx</param>
+        </member>
+        <member name="M:API.Controllers.CommentController.GetReplies(System.Guid)">
+            <summary>
+            Method retrieves all the replies by specific id
+            </summary>
+            <param name="id">id</param>
+            <returns>IEnumerable&lt;object&gt;</returns>
+        </member>
+        <member name="M:API.Controllers.CommentController.Reply(System.Guid,Domain.Comment)">
+            <summary>
+            Method save the reply by specific id
+            </summary>
+            <param name="id">id</param>
+            <param name="reply">reply</param>
+            <returns>Task&lt;IActionResult&gt;</returns>
+        </member>
         <member name="T:API.Controllers.DifficultiesController">
             <summary>
             Class DifficultiesController.
@@ -256,6 +303,17 @@
             </summary>
             <param name="id">id</param>
             <returns>JSON</returns>
+        </member>
+        <member name="T:API.Controllers.HomeController">
+            <summary>
+            Class HomeController
+            </summary>
+        </member>
+        <member name="M:API.Controllers.HomeController.Index">
+            <summary>
+            Method displays index UI
+            </summary>
+            <returns>HTML-page</returns>
         </member>
         <member name="T:API.Controllers.ModerationItemController">
             <summary>
@@ -561,6 +619,31 @@
         <member name="T:API.ViewModels.BookViewModel">
             <summary>
             Class BookViewModels
+            </summary>
+        </member>
+        <member name="F:API.ViewModels.BookViewModel.Create">
+            <summary>
+            Func
+            </summary>
+        </member>
+        <member name="P:API.ViewModels.BookViewModel.Projection">
+            <summary>
+            Expression
+            </summary>
+        </member>
+        <member name="T:API.ViewModels.CommentViewModel">
+            <summary>
+            Class CommentViewModel
+            </summary>
+        </member>
+        <member name="F:API.ViewModels.CommentViewModel.Create">
+            <summary>
+            Func
+            </summary>
+        </member>
+        <member name="P:API.ViewModels.CommentViewModel.Projection">
+            <summary>
+            Expression
             </summary>
         </member>
     </members>

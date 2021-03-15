@@ -10,8 +10,14 @@ namespace API.ViewModels
   /// </summary>
   public static class BookViewModel
   {
+    /// <summary>
+    /// Func
+    /// </summary>
     public static readonly Func<Book, object> Create = Projection.Compile();
 
+    /// <summary>
+    /// Expression
+    /// </summary>
     public static Expression<Func<Book, object>> Projection =>
       book => new
       {

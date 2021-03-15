@@ -63,6 +63,8 @@ namespace API.Extensions
 
       services.AddAutoMapper(typeof(List.Handler));
 
+      services.AddControllersWithViews();
+
       return services;
     }
   }

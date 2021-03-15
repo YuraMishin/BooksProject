@@ -46,6 +46,9 @@ namespace API.BackgroundServices.VideoEditing
     /// </summary>
     public string WorkingDirectory => _env.WebRootPath;
 
+    /// <summary>
+    /// FFMPEGPath
+    /// </summary>
     public string FFMPEGPath => Path.Combine(_env.ContentRootPath, "ffmpeg", "ffmpeg.exe");
 
     /// <summary>

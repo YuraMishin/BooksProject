@@ -47,12 +47,18 @@ namespace API.Controllers
     [HttpGet]
     public IEnumerable<object> All() => _context.Books.Select(BookViewModel.Projection).ToList();
 
+    /// <summary>
+    /// Method retrieves the specific book.
+    /// GET: /api/books/{id}
+    /// </summary>
+    /// <param name="id">id</param>
+    /// <returns>object</returns>
     [HttpGet("{id}")]
     public object Get(Guid id) =>
-      _context.Books
-        .Where(x => x.Id.Equals(id))
-        .Select(BookViewModel.Projection)
-        .FirstOrDefault();
+     _context.Books
+       .Where(x => x.Id.Equals(id))
+       .Select(BookViewModel.Projection)
+       .FirstOrDefault();
 
     /// <summary> Method creates a book.
     /// POST: /api/books/
@@ -79,6 +85,12 @@ namespace API.Controllers
       return Ok(BookViewModel.Create(book));
     }
 
+    /// <summary>
+    /// Method updates the book.
+    /// PUT: api/books/{book}
+    /// </summary>
+    /// <param name="book">book</param>
+    /// <returns>object</returns>
     [HttpPut]
     public async Task<object> Update([FromBody] Book book)
     {

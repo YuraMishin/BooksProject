@@ -10,17 +10,29 @@ using Persistence;
 
 namespace API.Controllers
 {
+  /// <summary>
+  /// Class CommentController
+  /// </summary>
   [ApiController]
   [Route("api/comments")]
   public class CommentController : ControllerBase
   {
     private readonly DataContext _ctx;
 
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="ctx">ctx</param>
     public CommentController(DataContext ctx)
     {
       _ctx = ctx;
     }
 
+    /// <summary>
+    /// Method retrieves all the replies by specific id
+    /// </summary>
+    /// <param name="id">id</param>
+    /// <returns>IEnumerable&lt;object&gt;</returns>
     [HttpGet("{id}/replies")]
     public IEnumerable<object> GetReplies(Guid id) =>
         _ctx.Comments
@@ -28,6 +40,12 @@ namespace API.Controllers
             .Select(CommentViewModel.Projection)
             .ToList();
 
+    /// <summary>
+    /// Method save the reply by specific id
+    /// </summary>
+    /// <param name="id">id</param>
+    /// <param name="reply">reply</param>
+    /// <returns>Task&lt;IActionResult&gt;</returns>
     [HttpPost("{id}/replies")]
     public async Task<IActionResult> Reply(Guid id, [FromBody] Comment reply)
     {
